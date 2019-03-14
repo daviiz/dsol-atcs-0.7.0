@@ -1,0 +1,90 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>dsol</groupId>
+    <artifactId>dsol</artifactId>
+    <version>3.03.05</version>
+  </parent>
+
+  <artifactId>dsol-asw-v0.7.01</artifactId>
+  <name>DSOL core-modified project</name>
+  <description>DSOL classes for simulators and experiments for different formalisms</description>
+  <url>https://simulation.tudelft.nl/dsol/3.0/dsol-core</url>
+
+  <repositories>
+    <repository>
+      <name>DSOL Public Repository</name>
+      <id>dsol</id>
+      <url>http://www.simulation.tudelft.nl/maven</url>
+    </repository>
+  </repositories>
+
+  <dependencies>
+    <dependency>
+      <groupId>colt</groupId>
+      <artifactId>colt</artifactId>
+      <version>1.2.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>dsol</groupId>
+      <artifactId>dsol-naming</artifactId>
+      <version>3.03.05</version>
+    </dependency>
+
+    <dependency>
+      <groupId>dsol</groupId>
+      <artifactId>dsol-interpreter</artifactId>
+      <version>3.03.05</version>
+    </dependency>
+
+    <dependency>
+      <groupId>dsol</groupId>
+      <artifactId>dsol-swing</artifactId>
+      <version>3.03.05</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.djunits</groupId>
+      <artifactId>djunits</artifactId>
+      <version>3.00.07</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.6</version>
+      <scope>provided</scope>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <useUniqueVersions>false</useUniqueVersions>
+              <classpathPrefix>lib/</classpathPrefix>
+              <mainClass>asw.soa.main.ASWSwingApplication5</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

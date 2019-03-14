@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>combatSysModel.DEM.atomicModel.BaseAtomicModel</OriginalElement>
+  <nodes>
+    <node x="1543.0" y="710.0">combatSysModel.DEM.CM_Weapon</node>
+    <node x="808.0" y="710.0">combatSysModel.DEM.atomicModel.Controller_Updater</node>
+    <node x="1413.375" y="250.0">nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.AbstractDEVSModel</node>
+    <node x="359.3242097701151" y="620.0">combatSysModel.DEM.atomicModel.BaseAtomicModel</node>
+    <node x="1129.0" y="710.0">combatSysModel.DEM.Sensor</node>
+    <node x="323.0" y="710.0">combatSysModel.DEM.atomicModel.Maneuver_Updater</node>
+    <node x="849.7761494252874" y="330.0">nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.AbstractDEVSPortModel</node>
+    <node x="1708.4049568965515" y="80.0">java.lang.Number</node>
+    <node x="646.0" y="710.0">combatSysModel.DEM.atomicModel.Maneuver_Actor</node>
+    <node x="0.0" y="710.0">combatSysModel.DEM.atomicModel.Sensor_Updater</node>
+    <node x="501.99999999999994" y="710.0">combatSysModel.DEM.atomicModel.Sensor_Actor</node>
+    <node x="1417.0" y="710.0">combatSysModel.DEM.Maneuver</node>
+    <node x="1123.445402298851" y="540.0">combatSysModel.DEM.IDEVSModel</node>
+    <node x="373.3242097701151" y="460.0">nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.AtomicModel</node>
+    <node x="1350.949209770115" y="460.0">nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.CoupledModel</node>
+    <node x="1282.324209770115" y="620.0">combatSysModel.DEM.BaseCoupledModel</node>
+    <node x="1685.0" y="710.0">combatSysModel.DEM.Controller_Platform</node>
+    <node x="936.4636494252874" y="170.0">nl.tudelft.simulation.dsol.simtime.SimTime</node>
+    <node x="197.13290229885092" y="80.0">combatSysModel.OM.ObjectModelBase</node>
+    <node x="967.2761494252874" y="0.0">java.io.Serializable</node>
+    <node x="1237.0" y="710.0">combatSysModel.DEM.Controller_Weapon</node>
+    <node x="161.0" y="710.0">combatSysModel.DEM.atomicModel.Controller_Actor</node>
+    <node x="987.0" y="710.0">combatSysModel.DEM.CM_Platform</node>
+    <node x="1479.9049568965515" y="170.0">nl.tudelft.simulation.event.EventProducer</node>
+    <node x="778.2761494252874" y="80.0">java.lang.Comparable</node>
+    <node x="1359.449209770115" y="540.0">nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.CoupledModel.TimeDouble</node>
+    <node x="1505.4049568965515" y="80.0">nl.tudelft.simulation.event.EventProducerInterface</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="combatSysModel.DEM.atomicModel.Sensor_Actor" target="combatSysModel.DEM.atomicModel.BaseAtomicModel">
+      <point x="0.0" y="-15.0" />
+      <point x="564.0" y="690.0" />
+      <point x="449.15754310344835" y="690.0" />
+      <point x="12.833333333333258" y="15.0" />
+    </edge>
+    <edge source="nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.CoupledModel.TimeDouble" target="nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.CoupledModel">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.AbstractDEVSPortModel" target="nl.tudelft.simulation.dsol.simtime.SimTime">
+      <point x="-23.625" y="-15.0" />
+      <point x="920.6511494252874" y="230.0" />
+      <point x="972.8386494252874" y="230.0" />
+      <point x="-12.125" y="15.0" />
+    </edge>
+    <edge source="nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.CoupledModel" target="nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.AbstractDEVSPortModel">
+      <point x="-16.875" y="-15.0" />
+      <point x="1401.574209770115" y="390.0" />
+      <point x="991.5261494252874" y="390.0" />
+      <point x="47.25" y="15.0" />
+    </edge>
+    <edge source="combatSysModel.DEM.Maneuver" target="combatSysModel.DEM.BaseCoupledModel">
+      <point x="0.0" y="-15.0" />
+      <point x="1470.0" y="690.0" />
+      <point x="1377.4075431034485" y="690.0" />
+      <point x="13.583333333333371" y="15.0" />
+    </edge>
+    <edge source="combatSysModel.DEM.BaseCoupledModel" target="combatSysModel.DEM.IDEVSModel">
+      <point x="-40.75" y="-15.0" />
+      <point x="1323.074209770115" y="595.0" />
+      <point x="1214.195402298851" y="595.0" />
+      <point x="30.25" y="15.0" />
+    </edge>
+    <edge source="nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.CoupledModel" target="nl.tudelft.simulation.dsol.simtime.SimTime">
+      <point x="16.875" y="-15.0" />
+      <point x="1435.324209770115" y="380.0" />
+      <point x="1397.7799568965515" y="380.0" />
+      <point x="1397.7799568965515" y="230.0" />
+      <point x="997.0886494252874" y="230.0" />
+      <point x="12.125" y="15.0" />
+    </edge>
+    <edge source="combatSysModel.DEM.atomicModel.Sensor_Updater" target="combatSysModel.DEM.atomicModel.BaseAtomicModel">
+      <point x="0.0" y="-15.0" />
+      <point x="70.5" y="670.0" />
+      <point x="372.15754310344835" y="670.0" />
+      <point x="-64.16666666666674" y="15.0" />
+    </edge>
+    <edge source="combatSysModel.DEM.Sensor" target="combatSysModel.DEM.BaseCoupledModel">
+      <point x="0.0" y="-15.0" />
+      <point x="1173.0" y="680.0" />
+      <point x="1323.074209770115" y="680.0" />
+      <point x="-40.75" y="15.0" />
+    </edge>
+    <edge source="nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.AbstractDEVSModel" target="nl.tudelft.simulation.event.EventProducer">
+      <point x="20.625" y="-15.0" />
+      <point x="1516.5" y="230.0" />
+      <point x="1545.9049568965515" y="230.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.AbstractDEVSPortModel" target="java.lang.Comparable">
+      <point x="-70.875" y="-15.0" />
+      <point x="873.4011494252874" y="310.0" />
+      <point x="491.0378591954025" y="310.0" />
+      <point x="491.0378591954025" y="150.0" />
+      <point x="828.2761494252874" y="150.0" />
+      <point x="-10.0" y="15.0" />
+    </edge>
+    <edge source="combatSysModel.DEM.CM_Platform" target="combatSysModel.DEM.BaseCoupledModel">
+      <point x="0.0" y="-15.0" />
+      <point x="1048.0" y="670.0" />
+      <point x="1295.9075431034485" y="670.0" />
+      <point x="-67.91666666666669" y="15.0" />
+    </edge>
+    <edge source="nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.CoupledModel" target="java.lang.Comparable">
+      <point x="-50.625" y="-15.0" />
+      <point x="1367.824209770115" y="400.0" />
+      <point x="480.03785919540246" y="400.0" />
+      <point x="480.03785919540246" y="140.0" />
+      <point x="808.2761494252874" y="140.0" />
+      <point x="-30.0" y="15.0" />
+    </edge>
+    <edge source="nl.tudelft.simulation.event.EventProducer" target="nl.tudelft.simulation.event.EventProducerInterface">
+      <point x="33.0" y="-15.0" />
+      <point x="1578.9049568965515" y="130.0" />
+      <point x="1596.9049568965515" y="130.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="nl.tudelft.simulation.dsol.simtime.SimTime" target="java.io.Serializable">
+      <point x="12.125" y="-15.0" />
+      <point x="997.0886494252874" y="60.0" />
+      <point x="1010.0261494252874" y="60.0" />
+      <point x="-14.25" y="15.0" />
+    </edge>
+    <edge source="combatSysModel.DEM.atomicModel.BaseAtomicModel" target="nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.AtomicModel">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.AtomicModel" target="nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.AbstractDEVSPortModel">
+      <point x="15.75" y="-15.0" />
+      <point x="452.0742097701151" y="420.0" />
+      <point x="897.0261494252874" y="420.0" />
+      <point x="-47.25" y="15.0" />
+    </edge>
+    <edge source="nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.AbstractDEVSModel" target="java.lang.Comparable">
+      <point x="-20.625" y="-15.0" />
+      <point x="1475.25" y="230.0" />
+      <point x="1457.4049568965515" y="230.0" />
+      <point x="1457.4049568965515" y="130.0" />
+      <point x="888.2761494252874" y="130.0" />
+      <point x="50.0" y="15.0" />
+    </edge>
+    <edge source="combatSysModel.DEM.Controller_Weapon" target="combatSysModel.DEM.BaseCoupledModel">
+      <point x="0.0" y="-15.0" />
+      <point x="1317.0" y="690.0" />
+      <point x="1350.2408764367817" y="690.0" />
+      <point x="-13.583333333333314" y="15.0" />
+    </edge>
+    <edge source="combatSysModel.DEM.atomicModel.Maneuver_Updater" target="combatSysModel.DEM.atomicModel.BaseAtomicModel">
+      <point x="0.0" y="-15.0" />
+      <point x="402.5" y="690.0" />
+      <point x="423.49087643678183" y="690.0" />
+      <point x="-12.833333333333258" y="15.0" />
+    </edge>
+    <edge source="combatSysModel.DEM.atomicModel.Controller_Actor" target="combatSysModel.DEM.atomicModel.BaseAtomicModel">
+      <point x="0.0" y="-15.0" />
+      <point x="232.0" y="680.0" />
+      <point x="397.8242097701151" y="680.0" />
+      <point x="-38.5" y="15.0" />
+    </edge>
+    <edge source="nl.tudelft.simulation.dsol.simtime.SimTime" target="java.lang.Number">
+      <point x="36.375" y="-15.0" />
+      <point x="1021.3386494252874" y="140.0" />
+      <point x="1718.0049568965514" y="140.0" />
+      <point x="-38.400000000000006" y="15.0" />
+    </edge>
+    <edge source="nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.AtomicModel" target="java.lang.Number">
+      <point x="47.25" y="-15.0" />
+      <point x="483.5742097701151" y="430.0" />
+      <point x="1775.6049568965514" y="430.0" />
+      <point x="19.200000000000045" y="15.0" />
+    </edge>
+    <edge source="combatSysModel.DEM.atomicModel.BaseAtomicModel" target="combatSysModel.DEM.IDEVSModel">
+      <point x="51.33333333333326" y="-15.0" />
+      <point x="487.65754310344835" y="595.0" />
+      <point x="1153.695402298851" y="595.0" />
+      <point x="-30.25" y="15.0" />
+    </edge>
+    <edge source="nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.AbstractDEVSModel" target="java.lang.Number">
+      <point x="61.87500000000006" y="-15.0" />
+      <point x="1557.75" y="230.0" />
+      <point x="1683.1049568965514" y="230.0" />
+      <point x="1683.1049568965514" y="150.0" />
+      <point x="1737.2049568965515" y="150.0" />
+      <point x="-19.200000000000045" y="15.0" />
+    </edge>
+    <edge source="combatSysModel.OM.ObjectModelBase" target="java.io.Serializable">
+      <point x="0.0" y="-15.0" />
+      <point x="273.1329022988509" y="60.0" />
+      <point x="981.5261494252874" y="60.0" />
+      <point x="-42.75" y="15.0" />
+    </edge>
+    <edge source="combatSysModel.DEM.atomicModel.BaseAtomicModel" target="combatSysModel.OM.ObjectModelBase">
+      <point x="-51.33333333333326" y="-15.0" />
+      <point x="384.99087643678183" y="595.0" />
+      <point x="273.1329022988509" y="595.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="nl.tudelft.simulation.dsol.simtime.SimTime" target="java.lang.Comparable">
+      <point x="-36.375" y="-15.0" />
+      <point x="948.5886494252874" y="150.0" />
+      <point x="848.2761494252874" y="150.0" />
+      <point x="10.0" y="15.0" />
+    </edge>
+    <edge source="nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.AbstractDEVSPortModel" target="nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.AbstractDEVSModel">
+      <point x="23.625" y="-15.0" />
+      <point x="967.9011494252874" y="300.0" />
+      <point x="1495.875" y="300.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="nl.tudelft.simulation.event.EventProducer" target="java.io.Serializable">
+      <point x="-33.0" y="-15.0" />
+      <point x="1512.9049568965515" y="130.0" />
+      <point x="1494.9049568965515" y="130.0" />
+      <point x="1494.9049568965515" y="60.0" />
+      <point x="1038.5261494252873" y="60.0" />
+      <point x="14.25" y="15.0" />
+    </edge>
+    <edge source="nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.CoupledModel" target="java.lang.Number">
+      <point x="50.625" y="-15.0" />
+      <point x="1469.074209770115" y="440.0" />
+      <point x="1832.049209770115" y="440.0" />
+      <point x="1832.049209770115" y="150.0" />
+      <point x="1794.8049568965516" y="150.0" />
+      <point x="38.40000000000009" y="15.0" />
+    </edge>
+    <edge source="combatSysModel.DEM.BaseCoupledModel" target="nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.CoupledModel.TimeDouble">
+      <point x="40.75" y="-15.0" />
+      <point x="1404.574209770115" y="595.0" />
+      <point x="1418.449209770115" y="595.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.AbstractDEVSModel" target="nl.tudelft.simulation.dsol.simtime.SimTime">
+      <point x="-61.875" y="-15.0" />
+      <point x="1434.0" y="220.0" />
+      <point x="1021.3386494252874" y="220.0" />
+      <point x="36.375" y="15.0" />
+    </edge>
+    <edge source="combatSysModel.DEM.atomicModel.Maneuver_Actor" target="combatSysModel.DEM.atomicModel.BaseAtomicModel">
+      <point x="0.0" y="-15.0" />
+      <point x="717.0" y="680.0" />
+      <point x="474.8242097701151" y="680.0" />
+      <point x="38.5" y="15.0" />
+    </edge>
+    <edge source="nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.AbstractDEVSPortModel" target="java.lang.Number">
+      <point x="70.875" y="-15.0" />
+      <point x="1015.1511494252874" y="310.0" />
+      <point x="1764.6049568965514" y="310.0" />
+      <point x="1764.6049568965514" y="150.0" />
+      <point x="1756.4049568965515" y="150.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.AtomicModel" target="nl.tudelft.simulation.dsol.simtime.SimTime">
+      <point x="-15.75" y="-15.0" />
+      <point x="420.5742097701151" y="410.0" />
+      <point x="502.0378591954025" y="410.0" />
+      <point x="502.0378591954025" y="220.0" />
+      <point x="948.5886494252874" y="220.0" />
+      <point x="-36.375" y="15.0" />
+    </edge>
+    <edge source="combatSysModel.DEM.atomicModel.Controller_Updater" target="combatSysModel.DEM.atomicModel.BaseAtomicModel">
+      <point x="0.0" y="-15.0" />
+      <point x="887.5" y="670.0" />
+      <point x="500.49087643678183" y="670.0" />
+      <point x="64.16666666666674" y="15.0" />
+    </edge>
+    <edge source="java.lang.Number" target="java.io.Serializable">
+      <point x="0.0" y="-15.0" />
+      <point x="1756.4049568965515" y="50.0" />
+      <point x="1067.0261494252873" y="50.0" />
+      <point x="42.75" y="15.0" />
+    </edge>
+    <edge source="combatSysModel.DEM.Controller_Platform" target="combatSysModel.DEM.BaseCoupledModel">
+      <point x="-5.6843418860808015E-14" y="-15.0" />
+      <point x="1765.0" y="670.0" />
+      <point x="1431.7408764367817" y="670.0" />
+      <point x="67.91666666666663" y="15.0" />
+    </edge>
+    <edge source="nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.AtomicModel" target="java.lang.Comparable">
+      <point x="-47.25" y="-15.0" />
+      <point x="389.0742097701151" y="440.0" />
+      <point x="354.9492097701151" y="440.0" />
+      <point x="354.9492097701151" y="130.0" />
+      <point x="788.2761494252874" y="130.0" />
+      <point x="-50.0" y="15.0" />
+    </edge>
+    <edge source="combatSysModel.DEM.CM_Weapon" target="combatSysModel.DEM.BaseCoupledModel">
+      <point x="0.0" y="-15.0" />
+      <point x="1604.0" y="680.0" />
+      <point x="1404.574209770115" y="680.0" />
+      <point x="40.75" y="15.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.9107238605898124" x="729.9684368174252" y="988.8205562956045" />
+  <SelectedNodes>
+    <node>java.io.Serializable</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
