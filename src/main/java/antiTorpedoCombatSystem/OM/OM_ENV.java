@@ -19,11 +19,14 @@ public class OM_ENV extends ObjectModelBase {
         if(_sonarInfo.getSenderId() == null || _sonarInfo.getName().equals("default"))
             return;
         if(this.out_sonarInfoMap.size()>0){
-            if(this.out_sonarInfoMap.containsKey(_sonarInfo.getSenderId())){
-                this.out_sonarInfoMap.replace(_sonarInfo.getSenderId(),_sonarInfo);
+            if(this.out_sonarInfoMap.containsKey(_sonarInfo.getName())){
+                this.out_sonarInfoMap.replace(_sonarInfo.getName(),_sonarInfo);
+            }else{
+                this.out_sonarInfoMap.put(_sonarInfo.getName(),_sonarInfo);
             }
-        }else{
-            this.out_sonarInfoMap.put(_sonarInfo.getSenderId(),_sonarInfo);
+        }
+        else{
+            this.out_sonarInfoMap.put(_sonarInfo.getName(),_sonarInfo);
         }
     }
 

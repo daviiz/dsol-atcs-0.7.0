@@ -42,8 +42,8 @@ public class CM_SENSOR extends CoupledModelBase {
 
     @Override
     protected void couplingComponent() {
-        transmitter = new AM_TRANSMITTER_DES("control",this);
-        receiver = new AM_RECEIVER_DES("control",this);
+        transmitter = new AM_TRANSMITTER_DES("transmitter",this);
+        receiver = new AM_RECEIVER_DES("receiver",this);
 
         transmitter.constructModel();
         receiver.constructModel();

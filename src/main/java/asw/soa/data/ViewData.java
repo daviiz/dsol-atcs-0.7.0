@@ -85,24 +85,24 @@ public class ViewData implements java.io.Serializable {
             this.color = Color.RED;
             this.detectRange = 200;
             this.belong = 1;
-            this.speed = 0.4;
+            this.speed = 2;
         } else if (this.name.contains("Submarine")) {
             this.color = Color.BLUE;
             this.detectRange = 400;
             this.belong = -1;
-            this.speed = 0.2;
+            this.speed = 1;
 
         } else if (this.name.contains("Decoy")) {
             this.color = Color.PINK;
             this.detectRange = 100;
             this.belong = 1;
-            this.speed = 0.4;
+            this.speed = 2;
 
         } else if (this.name.contains("Torpedo")) {
             this.color = Color.CYAN;
             this.detectRange = 150;
             this.belong = -1;
-            this.speed = 0.9;
+            this.speed = 4;
         }
     }
     public ViewData(scen_info info){

@@ -103,10 +103,10 @@ public class AM_CONTROL_DES extends AtomicModelBase<OM_CONTROL> {
         if(this.phase.getName().equals(CONTROL.getName())){
             this.nextPhaseName = this.om.battlePlanning();
 
-            if(this.nextPhaseName.equals(IDENTIFY)){
+            if(this.nextPhaseName.equals(IDENTIFY.getName())){
                 this.phase = IDENTIFY;
 
-            }else if(this.nextPhaseName.equals(WAIT)){
+            }else if(this.nextPhaseName.equals(WAIT.getName())){
                 this.phase = WAIT;
 
             }
@@ -116,12 +116,12 @@ public class AM_CONTROL_DES extends AtomicModelBase<OM_CONTROL> {
     @Override
     protected void lambdaFunc() {
         if(this.phase.getName().equals(CONTROL.getName())){
-            if(this.nextPhaseName.equals(IDENTIFY)){
+            if(this.nextPhaseName.equals(IDENTIFY.getName())){
                 this.om.getOut_cmdMsg().setSenderId(this.fullName);
                 this.out_cmdMsg.send(this.om.getOut_cmdMsg());
                 this.om.getOut_ctrlMsg().setSenderId(this.fullName);
                 this.out_ctrlMsg.send(this.om.getOut_ctrlMsg());
-            }else if(this.nextPhaseName.equals(WAIT)){
+            }else if(this.nextPhaseName.equals(WAIT.getName())){
                 this.om.getOut_result().setSenderId(this.fullName);
                 this.out_result.send(this.om.getOut_result());
             }

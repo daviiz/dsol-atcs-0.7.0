@@ -3,6 +3,7 @@ package antiTorpedoCombatSystem.OM;
 import antiTorpedoCombatSystem.portType.*;
 import devs.core.ObjectModelBase;
 import lombok.Data;
+import nl.tudelft.simulation.language.d3.CartesianPoint;
 
 @Data
 public class OM_CONTROL extends ObjectModelBase {
@@ -16,11 +17,40 @@ public class OM_CONTROL extends ObjectModelBase {
     private ctrlMsg out_ctrlMsg;
 
     public void Identification(){
+        //System.out.println("==in_ownPos******"+in_ownPos.getName()+"==in_detect****** "+in_detect.getName());
+        if(in_ownPos.getName() == null )
+            return;
+        if(in_detect.getName() == null)
+            return;
 
+        out_ctrlMsg.setTargetPos(in_detect.getPosition());
+        //System.out.println("==in_ownPos====="+in_ownPos.getName()+"==in_detect======="+in_detect.getName());
+
+        if(in_ownPos.getName().equals("Fleet")){
+            out_ctrlMsg.setCOMMAND("EVASION");
+
+        }else if(in_ownPos.getName().equals("Submarine")){
+            out_ctrlMsg.setCOMMAND("APPROACH");
+
+        }
+        out_cmdMsg.setCOMMAND("FIRE");
+        out_cmdMsg.setTargetPos(in_detect.getPosition());
+        out_cmdMsg.setOrginPos(in_ownPos.getPosition());
     }
 
     public String battlePlanning(){
-        return "";
+        String nexrPhaseName = "WAIT";
+        if(in_detect.getName() == null){
+            return nexrPhaseName;
+        }else{
+            nexrPhaseName = "IDENTIFY";
+        }
+//        if(in_ownPos.getName().contains("Fleet")) {
+//            ret = "EVASION";
+//        }else if(in_ownPos.getName().contains("Submarine")){
+//            ret = "APPROACH";
+//        }
+        return nexrPhaseName;
     }
 
     public OM_CONTROL(){

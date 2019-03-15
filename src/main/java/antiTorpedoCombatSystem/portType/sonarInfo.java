@@ -10,6 +10,5 @@ public class sonarInfo extends PortTypeBase {
     private int cmp;
     private boolean isLive;
     private double detectRange;
-    private boolean isSelf = false;
 
 }

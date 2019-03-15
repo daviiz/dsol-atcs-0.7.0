@@ -1,7 +1,6 @@
 package antiTorpedoCombatSystem.DES;
 
 import antiTorpedoCombatSystem.OM.OM_MANEUVER;
-import antiTorpedoCombatSystem.portType.cmdMsg;
 import antiTorpedoCombatSystem.portType.ctrlMsg;
 import antiTorpedoCombatSystem.portType.ownPos;
 import antiTorpedoCombatSystem.portType.simCtrl;

@@ -46,8 +46,8 @@ public class CM_UNDERWATER_PLATFORM extends CoupledModelBase {
     @Override
     protected void couplingComponent() {
         control = new AM_CONTROL_DES("control",this);
-        maneuver = new AM_MANEUVER_DES("control",this);
-        sensor = new CM_SENSOR("control",this);
+        maneuver = new AM_MANEUVER_DES("maneuver",this);
+        sensor = new CM_SENSOR("sensor",this);
 
         control.constructModel();
         maneuver.constructModel();

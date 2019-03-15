@@ -51,24 +51,25 @@ public class OM_SENSOR extends ObjectModelBase {
         out_sonarInfo.setName(in_ownPos.getName());
         out_sonarInfo.setPosition(in_ownPos.getPosition());
         out_sonarInfo.setDetectRange(in_ownPos.getDetectRange());
-        out_sonarInfo.setSelf(true);
+        //out_sonarInfo.setSelf(true);
     }
 
     public void updateInfo(){
         if(in_sonarInfo == null){
             return;
         }
-        if(in_sonarInfo.isSelf()){
+        if(!in_sonarInfo.getSenderId().equals("null.env")){
             selfInfo = in_sonarInfo;
             return;
         }
-
+        if(in_sonarInfo.getName().equals(selfInfo.getName()))
+            return;
         if(this.detectDataMap.size()>0){
-            if(this.detectDataMap.containsKey(in_sonarInfo.getSenderId())){
-                this.detectDataMap.replace(in_sonarInfo.getSenderId(),in_sonarInfo);
+            if(this.detectDataMap.containsKey(in_sonarInfo.getName())){
+                this.detectDataMap.replace(in_sonarInfo.getName(),in_sonarInfo);
             }
         }else{
-            this.detectDataMap.put(in_sonarInfo.getSenderId(),in_sonarInfo);
+            this.detectDataMap.put(in_sonarInfo.getName(),in_sonarInfo);
         }
     }
 
@@ -82,7 +83,7 @@ public class OM_SENSOR extends ObjectModelBase {
                 String key = (String)entry.getKey();
                 // 获取value
                 sonarInfo value = (sonarInfo)entry.getValue();
-                if(value != null){
+                if(value != null && selfInfo.getName() !=null &&  !selfInfo.getName().equals(value.getName())){
                     double tmpDistance = SimUtil.calcLength(selfInfo.getPosition().x,selfInfo.getPosition().y,
                             value.getPosition().x,value.getPosition().y);
                     if(tmpDistance < minDistance ){

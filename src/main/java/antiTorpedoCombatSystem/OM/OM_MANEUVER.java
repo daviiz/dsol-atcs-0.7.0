@@ -25,23 +25,20 @@ public class OM_MANEUVER extends ObjectModelBase {
     public void CalculationNextPosition(){
         this.viewData.origin = this.viewData.destination;
 
-        if (!this.viewData.status) {
-            this.viewData.destination = new CartesianPoint(viewData.destination.x, viewData.destination.y, 0);
-        } else {
-            if(in_ctrlMsg.getSenderId() == null){
-                viewData.destination = new CartesianPoint(viewData.origin.x+this.viewData.speed, viewData.origin.y+this.viewData.speed, 0);
-            }else{
-                viewData.destination = SimUtil.nextPoint(this.viewData.origin.x,this.viewData.origin.y,this.getIn_ctrlMsg().getTargetPos().x,this.getIn_ctrlMsg().getTargetPos().y,
-                        this.viewData.speed,this.getIn_ctrlMsg().getCOMMAND().equals("APPROACH"));
-            }
+        if(in_ctrlMsg.getSenderId() == null || in_ctrlMsg.getTargetPos().x == Double.NaN){
+            viewData.destination = new CartesianPoint(viewData.origin.x+this.viewData.speed, viewData.origin.y+this.viewData.speed, 0);
+        }else{
+            viewData.destination = SimUtil.nextPoint(this.viewData.origin.x,this.viewData.origin.y,this.getIn_ctrlMsg().getTargetPos().x,this.getIn_ctrlMsg().getTargetPos().y,
+                    this.viewData.speed,this.getIn_ctrlMsg().getCOMMAND().equals("APPROACH"));
 
-            this.syncData();
+
 
             //viewData.destination = new CartesianPoint(viewData.origin.x+viewData.speed, viewData.origin.y+viewData.speed, 0);
             //System.out.println("==============="+this.move_result.location.x);
             //this.out_ownPos.location = viewData.destination;
             //this.out_ownPos.camp = viewData.belong;
         }
+        this.syncData();
     }
 
     public OM_MANEUVER(){
