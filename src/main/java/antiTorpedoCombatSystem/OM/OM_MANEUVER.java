@@ -6,7 +6,6 @@ import antiTorpedoCombatSystem.portType.ownPos;
 import antiTorpedoCombatSystem.portType.simCtrl;
 import asw.soa.data.ViewData;
 import asw.soa.util.SimUtil;
-import asw.soa.view.Visual2dService;
 import devs.core.ObjectModelBase;
 import lombok.Data;
 import nl.tudelft.simulation.language.d3.CartesianPoint;
