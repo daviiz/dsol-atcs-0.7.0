@@ -3,7 +3,6 @@ package antiTorpedoCombatSystem.OM;
 import antiTorpedoCombatSystem.portType.*;
 import devs.core.ObjectModelBase;
 import lombok.Data;
-import nl.tudelft.simulation.language.d3.CartesianPoint;
 
 @Data
 public class OM_CONTROL extends ObjectModelBase {
