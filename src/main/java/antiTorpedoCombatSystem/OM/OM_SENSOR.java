@@ -46,11 +46,13 @@ public class OM_SENSOR extends ObjectModelBase {
         detectDataMap = new HashMap<>();
     }
     public void updateTransmitterSonarInfo(){
-        out_sonarInfo.setCmp(in_ownPos.getCmp());
-        out_sonarInfo.setLive(in_ownPos.isLive());
-        out_sonarInfo.setName(in_ownPos.getName());
-        out_sonarInfo.setPosition(in_ownPos.getPosition());
-        out_sonarInfo.setDetectRange(in_ownPos.getDetectRange());
+        if(in_ownPos.isActive()) {
+            out_sonarInfo.setCmp(in_ownPos.getCmp());
+            out_sonarInfo.setLive(in_ownPos.isLive());
+            out_sonarInfo.setName(in_ownPos.getName());
+            out_sonarInfo.setPosition(in_ownPos.getPosition());
+            out_sonarInfo.setDetectRange(in_ownPos.getDetectRange());
+        }
         //out_sonarInfo.setSelf(true);
     }
 
@@ -83,7 +85,7 @@ public class OM_SENSOR extends ObjectModelBase {
                 String key = (String)entry.getKey();
                 // 获取value
                 sonarInfo value = (sonarInfo)entry.getValue();
-                if(value != null && selfInfo.getName() !=null &&  !selfInfo.getName().equals(value.getName())){
+                if(value != null && selfInfo.getName() !=null &&  !selfInfo.getName().equals(value.getName()) && selfInfo.getCmp()!= value.getCmp() ){
                     double tmpDistance = SimUtil.calcLength(selfInfo.getPosition().x,selfInfo.getPosition().y,
                             value.getPosition().x,value.getPosition().y);
                     if(tmpDistance < minDistance ){

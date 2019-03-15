@@ -19,9 +19,14 @@ public class AntiTorpedoCombatModel extends AbstractDSOLModel.TimeDouble<DEVSSim
         //模型数据准备：
         ViewData f1Data = new ViewData("Fleet");
         f1Data.origin = f1Data.destination = new CartesianPoint(-200, -50, 0);
+        f1Data.status = true;
         ViewData s1Data = new ViewData("Submarine");
         s1Data.origin = s1Data.destination = new CartesianPoint(200, 100, 0);
-        ViewData[] mData = {f1Data,s1Data};
+        s1Data.status = true;
+
+        ViewData d1Data = new ViewData("Decoy"); d1Data.isActive = false;
+        ViewData t1Data = new ViewData("Torpedo"); t1Data.isActive = false;
+        ViewData[] mData = {f1Data,s1Data,d1Data,t1Data};
 
         /**
          * 模型初始化及构造
@@ -36,9 +41,13 @@ public class AntiTorpedoCombatModel extends AbstractDSOLModel.TimeDouble<DEVSSim
         try {
             root.fleet.maneuver.getOm().setViewData(mData[0]);
             root.submarine.maneuver.getOm().setViewData(mData[1]);
+            root.decoy.maneuver.getOm().setViewData(mData[2]);
+            root.torpedo.maneuver.getOm().setViewData(mData[3]);
 
             Visual2dService.getInstance().register(mData[0].name, simulator, mData[0]);
             Visual2dService.getInstance().register(mData[1].name, simulator, mData[1]);
+            Visual2dService.getInstance().register(mData[2].name, simulator, mData[2]);
+            Visual2dService.getInstance().register(mData[3].name, simulator, mData[3]);
 
         } catch (NamingException e) {
             SimLogger.always().error(e);

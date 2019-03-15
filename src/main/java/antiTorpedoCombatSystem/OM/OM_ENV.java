@@ -16,7 +16,7 @@ public class OM_ENV extends ObjectModelBase {
     }
 
     public void updateEnviroment(sonarInfo _sonarInfo) {
-        if(_sonarInfo.getSenderId() == null || _sonarInfo.getName().equals("default"))
+        if(_sonarInfo.getSenderId() == null || _sonarInfo.getName().equals("default") )
             return;
         if(this.out_sonarInfoMap.size()>0){
             if(this.out_sonarInfoMap.containsKey(_sonarInfo.getName())){

@@ -10,4 +10,5 @@ public class ownPos extends PortTypeBase {
     private int cmp;
     private boolean isLive;
     private double detectRange;
+    private boolean isActive;
 }

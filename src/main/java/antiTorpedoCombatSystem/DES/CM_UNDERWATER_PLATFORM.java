@@ -14,6 +14,8 @@ public class CM_UNDERWATER_PLATFORM extends CoupledModelBase {
     public InputPortBase<simCtrl> in_simCtrl;
     public InputPortBase<sonarInfo> in_sonarInfo;
 
+    public InputPortBase<cmdMsg> in_cmdMsg;
+
     public OutputPortBase<cmdMsg> out_cmdMsg;
     public OutputPortBase<sonarInfo> out_sonarInfo;
     public OutputPortBase<result> out_result;
@@ -41,6 +43,9 @@ public class CM_UNDERWATER_PLATFORM extends CoupledModelBase {
         out_cmdMsg = new OutputPortBase<cmdMsg>(this);
         out_sonarInfo = new OutputPortBase<sonarInfo>(this);
         out_result = new OutputPortBase<result>(this);
+
+        in_cmdMsg = new InputPortBase<cmdMsg>(this);
+
     }
 
     @Override
@@ -61,6 +66,10 @@ public class CM_UNDERWATER_PLATFORM extends CoupledModelBase {
         this.addExternalInputCoupling(this.in_simCtrl,maneuver.in_simCtrl);
 
         this.addExternalInputCoupling(this.in_sonarInfo,sensor.in_sonarInfo);
+
+        this.addExternalInputCoupling(this.in_cmdMsg,maneuver.in_cmdMsg);
+
+
         /**
          * EOC
          */

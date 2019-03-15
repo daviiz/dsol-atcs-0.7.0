@@ -39,6 +39,8 @@ public class ViewData implements java.io.Serializable {
      */
     public double theta = 0.0;
 
+    public boolean isActive = true;
+
     /**
      * the name of the model.
      */
@@ -46,7 +48,7 @@ public class ViewData implements java.io.Serializable {
 
     public int belong = 1;
 
-    public boolean status = true;
+    public boolean status = false;
 
     public double speed = 0;
 

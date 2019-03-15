@@ -55,6 +55,8 @@ public class Visual2dRender extends Renderable2D<Locatable> {
      */
     @Override
     public void paint(final Graphics2D graphics, final ImageObserver observer) {
+        if(!this.data.isActive)
+            return;
         graphics.setColor(this.data.color);
         graphics.fillOval(-(int) data.RADIUS, -(int) data.RADIUS, (int) (data.RADIUS * 2.0), (int) (data.RADIUS * 2.0));
         Font f = new Font("Consolas", Font.BOLD, 6);

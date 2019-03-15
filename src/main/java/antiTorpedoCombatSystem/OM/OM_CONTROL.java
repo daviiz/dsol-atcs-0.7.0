@@ -15,6 +15,9 @@ public class OM_CONTROL extends ObjectModelBase {
     private result out_result;
     private cmdMsg out_cmdMsg;
     private ctrlMsg out_ctrlMsg;
+    private simCtrl out_simCtrl;
+
+    private boolean isFired = false;
 
     public void Identification(){
         //System.out.println("==in_ownPos******"+in_ownPos.getName()+"==in_detect****** "+in_detect.getName());
@@ -22,7 +25,9 @@ public class OM_CONTROL extends ObjectModelBase {
             return;
         if(in_detect.getName() == null)
             return;
-
+        /**
+         * 内部机动指令：
+         */
         out_ctrlMsg.setTargetPos(in_detect.getPosition());
         //System.out.println("==in_ownPos====="+in_ownPos.getName()+"==in_detect======="+in_detect.getName());
 
@@ -33,9 +38,15 @@ public class OM_CONTROL extends ObjectModelBase {
             out_ctrlMsg.setCOMMAND("APPROACH");
 
         }
-        out_cmdMsg.setCOMMAND("FIRE");
-        out_cmdMsg.setTargetPos(in_detect.getPosition());
-        out_cmdMsg.setOrginPos(in_ownPos.getPosition());
+        /**
+         * 武器系统指令：
+         */
+        if(!isFired){
+            out_cmdMsg.setCOMMAND("FIRE");
+            out_cmdMsg.setTargetPos(in_detect.getPosition());
+            out_cmdMsg.setOrginPos(in_ownPos.getPosition());
+        }
+
     }
 
     public String battlePlanning(){
@@ -61,5 +72,6 @@ public class OM_CONTROL extends ObjectModelBase {
         out_result = new result();
         out_cmdMsg = new cmdMsg();
         out_ctrlMsg = new ctrlMsg();
+        out_simCtrl = new simCtrl();
     }
 }

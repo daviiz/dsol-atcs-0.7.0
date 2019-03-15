@@ -1,6 +1,7 @@
 package antiTorpedoCombatSystem.DES;
 
 import antiTorpedoCombatSystem.OM.OM_MANEUVER;
+import antiTorpedoCombatSystem.portType.cmdMsg;
 import antiTorpedoCombatSystem.portType.ctrlMsg;
 import antiTorpedoCombatSystem.portType.ownPos;
 import antiTorpedoCombatSystem.portType.simCtrl;
@@ -15,6 +16,7 @@ public class AM_MANEUVER_DES extends AtomicModelBase<OM_MANEUVER> {
 
     public InputPortBase<ctrlMsg> in_ctrlMsg;
     public InputPortBase<simCtrl> in_simCtrl;
+    public InputPortBase<cmdMsg> in_cmdMsg;
 
     public OutputPortBase<ownPos> out_ownPos;
 
@@ -32,6 +34,7 @@ public class AM_MANEUVER_DES extends AtomicModelBase<OM_MANEUVER> {
     protected void constructPort() {
         in_ctrlMsg = new InputPortBase<ctrlMsg>(this);
         in_simCtrl = new InputPortBase<simCtrl>(this);
+        in_cmdMsg = new InputPortBase<cmdMsg>(this);
 
         out_ownPos = new OutputPortBase<ownPos>(this);
 
@@ -60,12 +63,21 @@ public class AM_MANEUVER_DES extends AtomicModelBase<OM_MANEUVER> {
             activePortCode = 2;
             this.om.setIn_simCtrl((simCtrl) value);
         }
+        if(this.activePort == in_cmdMsg){
+            activePortCode = 3;
+            this.om.setIn_cmdMsg((cmdMsg) value);
+
+            this.om.setFired(true);
+        }
 
         if(this.phase.getName().equals(WAIT.getName()) && activePortCode == 1){
             this.phase = MOVE;
         }
         if(this.phase.getName().equals(MOVE.getName()) && activePortCode == 2){
             this.phase = WAIT;
+        }
+        if(this.phase.getName().equals(WAIT.getName()) && activePortCode == 3){
+            this.phase = MOVE;
         }
     }
 

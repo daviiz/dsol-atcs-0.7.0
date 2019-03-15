@@ -18,6 +18,7 @@ public class AM_CONTROL_DES extends AtomicModelBase<OM_CONTROL> {
     public OutputPortBase<result> out_result;
     public OutputPortBase<cmdMsg> out_cmdMsg;
     public OutputPortBase<ctrlMsg> out_ctrlMsg;
+    public OutputPortBase<simCtrl> out_simCtrl;
 
     private Phase WAIT,IDENTIFY,CONTROL;
 
@@ -37,6 +38,8 @@ public class AM_CONTROL_DES extends AtomicModelBase<OM_CONTROL> {
         out_result = new OutputPortBase<result>(this);
         out_cmdMsg = new OutputPortBase<cmdMsg>(this);
         out_ctrlMsg = new OutputPortBase<ctrlMsg>(this);
+
+        out_simCtrl = new OutputPortBase<simCtrl>(this);
     }
     @Override
     protected void constructObjectModel() {
@@ -117,8 +120,17 @@ public class AM_CONTROL_DES extends AtomicModelBase<OM_CONTROL> {
     protected void lambdaFunc() {
         if(this.phase.getName().equals(CONTROL.getName())){
             if(this.nextPhaseName.equals(IDENTIFY.getName())){
-                this.om.getOut_cmdMsg().setSenderId(this.fullName);
-                this.out_cmdMsg.send(this.om.getOut_cmdMsg());
+                /**
+                 * 发送武器指令，只发一次：
+                 */
+                if(!this.om.isFired()){
+                    this.om.getOut_cmdMsg().setSenderId(this.fullName);
+                    this.out_cmdMsg.send(this.om.getOut_cmdMsg());
+                    this.om.setFired(true);
+//                    this.om.getOut_simCtrl().setSenderId(this.fullName);
+//                    this.out_simCtrl.send(this.om.getOut_simCtrl());
+                }
+
                 this.om.getOut_ctrlMsg().setSenderId(this.fullName);
                 this.out_ctrlMsg.send(this.om.getOut_ctrlMsg());
             }else if(this.nextPhaseName.equals(WAIT.getName())){
