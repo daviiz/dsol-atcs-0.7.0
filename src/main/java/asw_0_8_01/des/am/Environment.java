@@ -1,11 +1,19 @@
-package asw_0_8_01.des.exFrame;
+package asw_0_8_01.des.am;
 
-import asw_0_8_01.om.GeneratorOm;
+import asw_0_8_01.om.EnvironmentOm;
 import devs.core.AtomicModelBase;
 import nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.CoupledModel;
 import nl.tudelft.simulation.dsol.simulators.DEVSSimulator;
 
-public class Generator extends AtomicModelBase<GeneratorOm> {
+public class Environment extends AtomicModelBase<EnvironmentOm> {
+    public Environment(String modelName, CoupledModel.TimeDouble parentModel) {
+        super(modelName, parentModel);
+    }
+
+    public Environment(String modelName, DEVSSimulator.TimeDouble simulator) {
+        super(modelName, simulator);
+    }
+
     @Override
     protected void constructPort() {
 
@@ -34,13 +42,5 @@ public class Generator extends AtomicModelBase<GeneratorOm> {
     @Override
     protected void lambdaFunc() {
 
-    }
-
-    public Generator(String modelName, CoupledModel.TimeDouble parentModel) {
-        super(modelName, parentModel);
-    }
-
-    public Generator(String modelName, DEVSSimulator.TimeDouble simulator) {
-        super(modelName, simulator);
     }
 }

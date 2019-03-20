@@ -29,7 +29,7 @@ public abstract class AtomicModelBase<OMType extends ObjectModelBase> extends At
     protected final void deltaInternal() {
         this.elapsedTime = 0.0;
         deltaInternalFunc();
-        this.om.setStatusValid();
+        //this.om.setStatusValid();
     }
 
     @Override
@@ -61,10 +61,10 @@ public abstract class AtomicModelBase<OMType extends ObjectModelBase> extends At
         if(this.om == null){
             return;
         }
-        if(this.om.status){
+        //if(this.om.status){
             lambdaFunc();
-        }
-        this.om.setStatusInvalid();
+        //}
+        //this.om.setStatusInvalid();
     }
 
     /**

@@ -1,11 +1,22 @@
-package asw_0_8_01.des.exFrame;
+package asw_0_8_01.des.am;
 
-import asw_0_8_01.om.GeneratorOm;
+import asw_0_8_01.om.DamageAssessmentOm;
 import devs.core.AtomicModelBase;
 import nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.CoupledModel;
 import nl.tudelft.simulation.dsol.simulators.DEVSSimulator;
 
-public class Generator extends AtomicModelBase<GeneratorOm> {
+public class DamageAssessment extends AtomicModelBase<DamageAssessmentOm> {
+
+
+
+    public DamageAssessment(String modelName, CoupledModel.TimeDouble parentModel) {
+        super(modelName, parentModel);
+    }
+
+    public DamageAssessment(String modelName, DEVSSimulator.TimeDouble simulator) {
+        super(modelName, simulator);
+    }
+
     @Override
     protected void constructPort() {
 
@@ -34,13 +45,5 @@ public class Generator extends AtomicModelBase<GeneratorOm> {
     @Override
     protected void lambdaFunc() {
 
-    }
-
-    public Generator(String modelName, CoupledModel.TimeDouble parentModel) {
-        super(modelName, parentModel);
-    }
-
-    public Generator(String modelName, DEVSSimulator.TimeDouble simulator) {
-        super(modelName, simulator);
     }
 }
