@@ -7,7 +7,7 @@ import devs.core.ObjectModelBase;
 import lombok.Data;
 import nl.tudelft.simulation.language.d3.CartesianPoint;
 @Data
-public class Platform_maneuver_actor_om extends ObjectModelBase {
+public class PlatformManeuverActorOm extends ObjectModelBase {
     //获取到的交战结果：
     private engage_result engage_result;
     //初始化时，加载模型数据：
@@ -27,7 +27,7 @@ public class Platform_maneuver_actor_om extends ObjectModelBase {
 
     private ViewData viewData;
 
-    public Platform_maneuver_actor_om(){
+    public PlatformManeuverActorOm(){
 
         engage_result = new engage_result();
         scen_info = new scen_info();

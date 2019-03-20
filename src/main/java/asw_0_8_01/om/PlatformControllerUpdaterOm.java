@@ -7,13 +7,13 @@ import devs.core.ObjectModelBase;
 import lombok.Data;
 
 @Data
-public class Platform_Controller_updater_om extends ObjectModelBase {
+public class PlatformControllerUpdaterOm extends ObjectModelBase {
 
     private threat_info threat_info;
     private env_info env_info;
     private target_info target_info;
 
-    public Platform_Controller_updater_om(){
+    public PlatformControllerUpdaterOm(){
         threat_info = new threat_info();
         env_info = new env_info();
         target_info = new target_info();

@@ -1,4 +1,4 @@
 package asw_0_8_01.des.cm;
 
-public class Weapon_Sensor {
+public class WeaponManeuver {
 }

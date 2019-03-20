@@ -7,7 +7,7 @@ import devs.core.ObjectModelBase;
 import lombok.Data;
 
 @Data
-public class Weapon_Controller_updater_om  extends ObjectModelBase {
+public class WeaponControllerUpdaterOm extends ObjectModelBase {
 
     private threat_info threat_info;
     private scen_info scen_info;

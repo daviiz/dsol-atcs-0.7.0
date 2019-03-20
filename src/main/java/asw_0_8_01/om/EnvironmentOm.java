@@ -4,5 +4,5 @@ import devs.core.ObjectModelBase;
 import lombok.Data;
 
 @Data
-public class Environment_om extends ObjectModelBase {
+public class EnvironmentOm extends ObjectModelBase {
 }

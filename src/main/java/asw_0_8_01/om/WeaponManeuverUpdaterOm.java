@@ -6,12 +6,12 @@ import devs.core.ObjectModelBase;
 import lombok.Data;
 
 @Data
-public class Weapon_maneuver_updater_om extends ObjectModelBase {
+public class WeaponManeuverUpdaterOm extends ObjectModelBase {
 
     private move_cmd move_cmd;
     private combatSysModel.portType.cmd_info cmd_info;
 
-    public Weapon_maneuver_updater_om(){
+    public WeaponManeuverUpdaterOm(){
         move_cmd = new move_cmd();
         cmd_info = new cmd_info();
     }

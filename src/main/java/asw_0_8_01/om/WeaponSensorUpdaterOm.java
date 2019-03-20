@@ -7,14 +7,14 @@ import devs.core.ObjectModelBase;
 import lombok.Data;
 
 @Data
-public class Weapon_sensor_updater_om extends ObjectModelBase {
+public class WeaponSensorUpdaterOm extends ObjectModelBase {
 
     private move_result in_move_result;
     private request in_request;
 
     private response out_response;
 
-    public Weapon_sensor_updater_om(){
+    public WeaponSensorUpdaterOm(){
         in_move_result = new move_result();
         in_request = new request();
         out_response = new response();

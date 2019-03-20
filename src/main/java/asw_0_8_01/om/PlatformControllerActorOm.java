@@ -5,7 +5,7 @@ import devs.core.ObjectModelBase;
 import lombok.Data;
 
 @Data
-public class Platform_Controller_actor_om  extends ObjectModelBase {
+public class PlatformControllerActorOm extends ObjectModelBase {
     private move_finished in_move_finished;
     private engage_result in_engage_result;
 
@@ -25,7 +25,7 @@ public class Platform_Controller_actor_om  extends ObjectModelBase {
 
     private String apprchNextPhase = "";
 
-    public Platform_Controller_actor_om(){
+    public PlatformControllerActorOm(){
         in_move_finished = new move_finished();
         in_engage_result = new engage_result();
         in_env_info = new env_info();

@@ -11,7 +11,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 @Data
-public class Weapon_sensor_actor_om extends ObjectModelBase {
+public class WeaponSensorActorOm extends ObjectModelBase {
     private engage_result in_engage_result;
     private env_info in_env_info;
     private scen_info in_scen_info;
@@ -23,7 +23,7 @@ public class Weapon_sensor_actor_om extends ObjectModelBase {
     private Map<String,env_info> env_infoMap = new HashMap<String,env_info>();
 
 
-    public Weapon_sensor_actor_om(){
+    public WeaponSensorActorOm(){
         in_engage_result = new engage_result();
         in_env_info = new env_info();
         in_scen_info = new scen_info();
