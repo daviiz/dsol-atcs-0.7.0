@@ -4,5 +4,5 @@ import devs.core.PortTypeBase;
 import lombok.Data;
 
 @Data
-public class wp_launch extends PortTypeBase {
+public class wp_guidance extends PortTypeBase {
 }

@@ -4,6 +4,9 @@ import devs.core.CoupledModelBase;
 import nl.tudelft.simulation.dsol.simulators.DEVSSimulatorInterface;
 
 public class PlatformController extends CoupledModelBase {
+
+
+
     public PlatformController(String modelName) {
         super(modelName);
     }
