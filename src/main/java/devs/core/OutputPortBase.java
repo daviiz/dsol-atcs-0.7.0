@@ -5,7 +5,7 @@ import nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.CoupledModel;
 import nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.OutputPort;
 import nl.tudelft.simulation.dsol.simtime.SimTimeDouble;
 
-public class OutputPortBase<portType extends PortTypeBase> extends OutputPort<Double,Double, SimTimeDouble,portType> {
+public class OutputPortBase<portType> extends OutputPort<Double,Double, SimTimeDouble,portType> {
     public OutputPortBase(CoupledModel<Double, Double, SimTimeDouble> coupledModel) {
         super(coupledModel);
     }

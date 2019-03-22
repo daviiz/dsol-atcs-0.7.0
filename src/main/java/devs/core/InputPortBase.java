@@ -4,7 +4,7 @@ import nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.AtomicModel;
 import nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.CoupledModel;
 import nl.tudelft.simulation.dsol.simtime.SimTimeDouble;
 
-public class InputPortBase<portType extends PortTypeBase> extends InputPort<Double,Double, SimTimeDouble,portType> {
+public class InputPortBase<portType> extends InputPort<Double,Double, SimTimeDouble,portType> {
 
     public InputPortBase(CoupledModel<Double, Double, SimTimeDouble> coupledModel) {
         super(coupledModel);
