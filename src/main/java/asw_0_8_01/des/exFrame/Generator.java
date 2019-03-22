@@ -25,7 +25,7 @@ public class Generator extends AtomicModelBase<GeneratorOm> {
     private entity_info out_entity_info_value;
 
     private boolean isFireWeapon = false;
-    private boolean isReplicaiton = false;
+    private boolean isReplicaitonRunNext = false;
 
     private Phase WAIT,GEN;
 
@@ -68,7 +68,7 @@ public class Generator extends AtomicModelBase<GeneratorOm> {
                  */
                 in_engage_result_value = (Boolean)value;
                 System.out.println("Rep_"+replicationCount+",已经执行完成了，是否成功拦截了鱼雷？ "+(in_engage_result_value ? "是": "否"));
-                isReplicaiton = true;
+                isReplicaitonRunNext = true;
             }
             this.phase  = GEN;
         }
@@ -92,7 +92,7 @@ public class Generator extends AtomicModelBase<GeneratorOm> {
                 out_entity_info.send(out_entity_info_value);
                 isFireWeapon = false;
             }
-            if(isReplicaiton){
+            if(isReplicaitonRunNext){
                 out_scen_info_value.setSenderId("Rep_"+replicationCount);
                 out_scen_info.send(out_scen_info_value);
                 isFireWeapon = false;
