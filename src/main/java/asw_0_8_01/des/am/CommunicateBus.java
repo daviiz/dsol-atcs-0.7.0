@@ -1,8 +1,6 @@
 package asw_0_8_01.des.am;
 
-import asw_0_8_01.portMsgType.env_info;
 import asw_0_8_01.portMsgType.move_result;
-import asw_0_8_01.portMsgType.scen_info;
 import devs.core.AtomicModelBase;
 import devs.core.InputPortBase;
 import devs.core.ObjectModelBase;
