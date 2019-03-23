@@ -9,4 +9,7 @@ public class threat_info extends PortTypeBase {
     private CartesianPoint position;
     private String name;
     private int cmp = 0;
+    public threat_info(){
+        this.name = "0";
+    }
 }
