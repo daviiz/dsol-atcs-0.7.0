@@ -79,7 +79,6 @@ public class CommunicateBus extends AtomicModelBase<ObjectModelBase> {
                         continue;
                     }
                     else{
-                        //value.setSenderId(tmp);
                         if(value != null){
                             value.setSenderId(this.fullName);
                             out_move_result.send(value);

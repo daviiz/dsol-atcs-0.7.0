@@ -5,4 +5,5 @@ import lombok.Data;
 
 @Data
 public class guidance_info extends PortTypeBase {
+    // no use
 }

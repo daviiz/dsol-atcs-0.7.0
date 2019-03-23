@@ -19,8 +19,8 @@ public class PlatformManeuver extends CoupledModelBase {
     public OutputPortBase<Boolean> out_fuel_exhasuted;
     public OutputPortBase<move_result> out_move_result;
 
-    private PlatformManeuverActor actor;
-    private PlatformManeuverUpdater updater;
+    public  PlatformManeuverActor actor;
+    public  PlatformManeuverUpdater updater;
 
     public PlatformManeuver(String modelName) {
         super(modelName);

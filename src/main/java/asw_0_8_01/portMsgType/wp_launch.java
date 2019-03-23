@@ -5,4 +5,5 @@ import lombok.Data;
 
 @Data
 public class wp_launch extends PortTypeBase {
+    private boolean launch = true;
 }

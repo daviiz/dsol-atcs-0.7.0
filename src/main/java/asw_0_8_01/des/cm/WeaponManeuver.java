@@ -19,8 +19,8 @@ public class WeaponManeuver extends CoupledModelBase {
     public OutputPortBase<Boolean> out_fuel_exhasuted;
     public OutputPortBase<move_result> out_move_result;
 
-    private WeaponManeuverActor actor;
-    private WeaponManeuverUpdater updater;
+    public WeaponManeuverActor actor;
+    public WeaponManeuverUpdater updater;
 
     public WeaponManeuver(String modelName) {
         super(modelName);

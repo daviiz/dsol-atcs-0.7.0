@@ -17,8 +17,8 @@ public class WeaponController extends CoupledModelBase {
 
     public OutputPortBase<String> out_move_cmd;
 
-    private WeaponControllerActor actor;
-    private WeaponControllerUpdater updater;
+    public WeaponControllerActor actor;
+    public WeaponControllerUpdater updater;
 
     public WeaponController(String modelName) {
         super(modelName);

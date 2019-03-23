@@ -18,9 +18,9 @@ public class Platform extends CoupledModelBase {
     public OutputPortBase<wp_launch> out_wp_launch;
     public OutputPortBase<wp_guidance> out_wp_guidance;
 
-    private PlatformController controller;
-    private PlatformSensor sensor;
-    private PlatformManeuver maneuver;
+    public PlatformController controller;
+    public PlatformSensor sensor;
+    public PlatformManeuver maneuver;
 
     public Platform(String modelName) {
         super(modelName);

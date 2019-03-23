@@ -7,9 +7,9 @@ import nl.tudelft.simulation.dsol.simulators.DEVSSimulatorInterface;
 
 public class CombatSystem extends CMRootBase {
 
-    private Generator gen;
-    private Transducer trans;
-    private SimModel model;
+    public Generator gen;
+    public Transducer trans;
+    public SimModel model;
 
     public CombatSystem(String modelName) {
         super(modelName);

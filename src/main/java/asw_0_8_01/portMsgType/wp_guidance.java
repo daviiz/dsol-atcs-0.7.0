@@ -5,4 +5,5 @@ import lombok.Data;
 
 @Data
 public class wp_guidance extends PortTypeBase {
+    // no use
 }

@@ -19,15 +19,11 @@ public class SimModel extends CoupledModelBase {
     public OutputPortBase<wp_launch> out_wp_launch;
     public OutputPortBase<Boolean> out_engage_result;
 
-    private Platform fleet,submarine;
-
-    private Weapon decoy1,decoy2,torpedo;
-
-    private Environment environment;
-
-    private CommunicateBus bus;
-
-    private DamageAssessment damageAssessment;
+    public Platform fleet,submarine;
+    public Weapon decoy1,decoy2,torpedo;
+    public Environment environment;
+    public CommunicateBus bus;
+    public DamageAssessment damageAssessment;
 
     public SimModel(String modelName) {
         super(modelName);

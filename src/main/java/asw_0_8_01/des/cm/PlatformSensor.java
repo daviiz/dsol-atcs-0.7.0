@@ -17,8 +17,8 @@ public class PlatformSensor extends CoupledModelBase {
 
     public OutputPortBase<threat_info> out_threat_info;
 
-    private PlatformSensorActor actor;
-    private PlatformSensorUpdater updater;
+    public PlatformSensorActor actor;
+    public PlatformSensorUpdater updater;
 
     public PlatformSensor(String modelName) {
         super(modelName);

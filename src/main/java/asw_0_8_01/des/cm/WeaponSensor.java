@@ -17,8 +17,8 @@ public class WeaponSensor  extends CoupledModelBase {
 
     public OutputPortBase<threat_info> out_threat_info;
 
-    private WeaponSensorActor actor;
-    private WeaponSensorUpdater updater;
+    public WeaponSensorActor actor;
+    public WeaponSensorUpdater updater;
 
     public WeaponSensor(String modelName) {
         super(modelName);

@@ -42,6 +42,11 @@ public class Generator extends AtomicModelBase<GeneratorOm> {
     @Override
     protected void constructObjectModel() {
         this.om = new GeneratorOm();
+        in_wp_launch_value = new wp_launch();
+        in_engage_result_value = false;
+        out_scen_info_value = new scen_info();
+        out_entity_info_value = new entity_info();
+
     }
 
     @Override
@@ -77,8 +82,9 @@ public class Generator extends AtomicModelBase<GeneratorOm> {
     @Override
     protected void deltaInternalFunc() {
         if(this.phase.getName().equals(GEN.getName())){
-            //执行第一个Replication：
-
+            /**
+             * 执行第一个Replication：重新初始化数据
+             */
             replicationCount += 1;
             this.phase  = WAIT;
         }
@@ -88,14 +94,22 @@ public class Generator extends AtomicModelBase<GeneratorOm> {
     protected void lambdaFunc() {
         if(this.phase.getName().equals(GEN.getName())){
             if(isFireWeapon){
+
                 out_entity_info_value.setSenderId("Rep_"+replicationCount);
                 out_entity_info.send(out_entity_info_value);
+
                 isFireWeapon = false;
             }
             if(isReplicaitonRunNext){
                 out_scen_info_value.setSenderId("Rep_"+replicationCount);
+
+                out_scen_info_value.setResetInfo("FLEET");
                 out_scen_info.send(out_scen_info_value);
-                isFireWeapon = false;
+
+                out_scen_info_value.setResetInfo("SUBMARINE");
+                out_scen_info.send(out_scen_info_value);
+
+                isReplicaitonRunNext = false;
             }
         }
     }

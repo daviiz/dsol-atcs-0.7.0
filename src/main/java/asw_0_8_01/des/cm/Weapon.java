@@ -15,9 +15,9 @@ public class Weapon extends CoupledModelBase {
 
     public OutputPortBase<move_result> out_move_result;
 
-    private WeaponController controller;
-    private WeaponSensor sensor;
-    private WeaponManeuver maneuver;
+    public WeaponController controller;
+    public WeaponSensor sensor;
+    public WeaponManeuver maneuver;
 
     public Weapon(String modelName) {
         super(modelName);

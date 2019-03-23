@@ -1,5 +1,6 @@
 package asw_0_8_01.des.am;
 
+import asw.soa.data.ViewData;
 import asw_0_8_01.om.WeaponManeuverActorOm;
 import asw_0_8_01.portMsgType.entity_info;
 import asw_0_8_01.portMsgType.env_info;
@@ -21,6 +22,16 @@ public class WeaponManeuverActor extends AtomicModelBase<WeaponManeuverActorOm> 
     public OutputPortBase<Boolean> out_move_finished;
     public OutputPortBase<Boolean> out_fuel_exhasuted;
     public OutputPortBase<move_result> out_move_result;
+
+    private ViewData viewData;
+
+    public ViewData getViewData() {
+        return viewData;
+    }
+
+    public void setViewData(ViewData viewData) {
+        this.viewData = viewData;
+    }
 
     public WeaponManeuverActor(String modelName, CoupledModel.TimeDouble parentModel) {
         super(modelName, parentModel);

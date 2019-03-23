@@ -20,8 +20,8 @@ public class PlatformController extends CoupledModelBase {
     public OutputPortBase<String> out_move_cmd;
     public OutputPortBase<wp_guidance> out_wp_guidance;
 
-    private PlatformControllerActor actor;
-    private PlatformControllerUpdater updater;
+    public PlatformControllerActor actor;
+    public PlatformControllerUpdater updater;
 
     public PlatformController(String modelName) {
         super(modelName);
