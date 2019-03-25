@@ -5,5 +5,10 @@ import lombok.Data;
 
 @Data
 public class scen_info extends PortTypeBase {
-   private String resetInfo;  // "Fleet"  "Submarine"
+   private String resetInfo;  // "Fleet"  "Submarine" ,"0"
+
+   public scen_info()
+   {
+      resetInfo = "0";
+   }
 }

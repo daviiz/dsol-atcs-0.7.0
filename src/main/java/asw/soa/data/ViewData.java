@@ -54,6 +54,8 @@ public class ViewData implements java.io.Serializable {
 
     public int detectRange = 100;
 
+    public double remainingTime = Double.POSITIVE_INFINITY;
+
     public LineData lineData = new LineData(0, 0, 0, 0);
 
     /**
@@ -88,23 +90,27 @@ public class ViewData implements java.io.Serializable {
             this.detectRange = 200;
             this.belong = 1;
             this.speed = 2;
+            remainingTime = 1000000;
         } else if (this.name.contains("Submarine")) {
             this.color = Color.BLUE;
             this.detectRange = 400;
             this.belong = -1;
             this.speed = 1;
+            remainingTime = 1000000;
 
         } else if (this.name.contains("Decoy")) {
             this.color = Color.PINK;
             this.detectRange = 100;
             this.belong = 1;
             this.speed = 2;
+            remainingTime = 1000000;
 
         } else if (this.name.contains("Torpedo")) {
             this.color = Color.CYAN;
             this.detectRange = 150;
             this.belong = -1;
             this.speed = 4;
+            remainingTime = 90000;
         }
     }
     public ViewData(scen_info info){

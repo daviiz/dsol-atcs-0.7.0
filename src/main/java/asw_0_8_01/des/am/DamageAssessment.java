@@ -26,6 +26,13 @@ public class DamageAssessment extends AtomicModelBase<DamageAssessmentOm> {
 
     private move_result torpedoLoc ;
 
+    /**
+     * 毁伤评估是否产生结果：
+     * true :表示已经评判出结果
+     * false : 表示尚在评判过程中
+     */
+    private boolean DA_Status;
+
     private Phase PERIOD,VA,END;
 
     public DamageAssessment(String modelName, CoupledModel.TimeDouble parentModel) {
@@ -51,12 +58,13 @@ public class DamageAssessment extends AtomicModelBase<DamageAssessmentOm> {
         out_engage_result_value = false;
         fleetLoc = new move_result();
         torpedoLoc = new move_result();
+        DA_Status = false;
     }
 
     @Override
     protected void constructPhase() {
         PERIOD = new Phase("PERIOD"); PERIOD.setLifeTime(10.0);
-        VA = new Phase("VA"); VA.setLifeTime(0.0);
+        VA = new Phase("VA"); VA.setLifeTime(10);
         END = new Phase("END"); END.setLifeTime(Double.POSITIVE_INFINITY);
         this.phase = PERIOD;
     }
@@ -73,38 +81,39 @@ public class DamageAssessment extends AtomicModelBase<DamageAssessmentOm> {
             }
 
         }
+        //毁伤模型重置：
+        if(in_scen_info == this.activePort){
+            this.phase = PERIOD;
+            DA_Status = false;
+        }
     }
 
     @Override
     protected void deltaInternalFunc() {
         if(this.phase == PERIOD){
             this.phase = VA;
+            return;
         }
         if(this.phase == VA){
-            this.out_engage_result_value = this.DA_Algorithm();
-
-            if(this.out_engage_result_value){
-                this.phase = END;
-            }else{
-                this.phase = PERIOD;
-            }
-
+            this.DA_Status = this.DA_Algorithm();
         }
     }
 
     @Override
     protected void lambdaFunc() {
         if(this.phase == VA){
-            if(this.out_engage_result_value){
-                //被击毁，交战结果为 false,即拦截失败
-                out_engage_result.send(false);
+            if(this.DA_Status){
+                out_engage_result.send(this.out_engage_result_value);
+                this.phase = END;
+            }else{
+                this.phase = PERIOD;
             }
         }
     }
 
     /**
      * 评判毁伤算法实现：
-     * @return
+     * @return true,成功拦截；false,被鱼雷击中，拦截失败
      */
     private boolean DA_Algorithm(){
         /**
@@ -112,14 +121,26 @@ public class DamageAssessment extends AtomicModelBase<DamageAssessmentOm> {
          */
         boolean tmp = false;
 
+        /**
+         * 鱼雷燃料耗尽，反鱼雷战斗成功
+         */
+        if(torpedoLoc.getRemainingTime()<0.000001){
+            tmp = true;
+            this.out_engage_result_value = true;
+        }
+
         if(fleetLoc.getName().equals("0") || torpedoLoc.getName().equals("0") ){
 
         }else{
+            /**
+             * 鱼雷追踪到水面舰艇，反鱼雷战斗失败
+             */
             double _distance = SimUtil.calcLength(fleetLoc.getPosition().getX(),fleetLoc.getPosition().getY(),
                     torpedoLoc.getPosition().getX(),torpedoLoc.getPosition().getY());
 
             if(_distance < 10.0){
                 tmp = true;
+                this.out_engage_result_value = false;
             }
         }
         return tmp;

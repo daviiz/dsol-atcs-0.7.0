@@ -3,7 +3,6 @@ package asw_0_8_01.des.exFrame;
 import asw_0_8_01.om.GeneratorOm;
 import asw_0_8_01.portMsgType.entity_info;
 import asw_0_8_01.portMsgType.scen_info;
-import asw_0_8_01.portMsgType.wp_launch;
 import devs.core.AtomicModelBase;
 import devs.core.InputPortBase;
 import devs.core.OutputPortBase;
@@ -14,12 +13,12 @@ import nl.tudelft.simulation.dsol.simulators.DEVSSimulator;
 public class Generator extends AtomicModelBase<GeneratorOm> {
 
 
-    public InputPortBase<wp_launch> in_wp_launch;
+    public InputPortBase<String> in_wp_launch;
     public InputPortBase<Boolean> in_engage_result;
     public OutputPortBase<scen_info> out_scen_info;
     public OutputPortBase<entity_info> out_entity_info;
 
-    private wp_launch in_wp_launch_value;
+    private String in_wp_launch_value;
     private boolean in_engage_result_value;
     private scen_info out_scen_info_value;
     private entity_info out_entity_info_value;
@@ -33,7 +32,7 @@ public class Generator extends AtomicModelBase<GeneratorOm> {
 
     @Override
     protected void constructPort() {
-        in_wp_launch = new InputPortBase<wp_launch>(this);
+        in_wp_launch = new InputPortBase<String>(this);
         in_engage_result = new InputPortBase<Boolean>(this);
         out_entity_info = new OutputPortBase<entity_info>(this);
         out_scen_info = new OutputPortBase<scen_info>(this);
@@ -42,7 +41,7 @@ public class Generator extends AtomicModelBase<GeneratorOm> {
     @Override
     protected void constructObjectModel() {
         this.om = new GeneratorOm();
-        in_wp_launch_value = new wp_launch();
+        in_wp_launch_value = "";
         in_engage_result_value = false;
         out_scen_info_value = new scen_info();
         out_entity_info_value = new entity_info();
@@ -52,8 +51,9 @@ public class Generator extends AtomicModelBase<GeneratorOm> {
     @Override
     protected void constructPhase() {
         WAIT = new Phase("WAIT"); WAIT.setLifeTime(Double.POSITIVE_INFINITY);
-        GEN = new Phase("GEN"); WAIT.setLifeTime(0.0);
+        GEN = new Phase("GEN"); GEN.setLifeTime(0.0);
         this.phase = GEN;
+        isReplicaitonRunNext = true;
     }
 
     @Override
@@ -63,7 +63,7 @@ public class Generator extends AtomicModelBase<GeneratorOm> {
                 /**
                  *to-do:发射武器：鱼雷/鱼雷诱饵，从wp_launch中获取武器实体的初始位置
                  */
-                in_wp_launch_value = (wp_launch)value;
+                in_wp_launch_value = (String)value;
 
                 isFireWeapon = true;
             }
@@ -103,10 +103,10 @@ public class Generator extends AtomicModelBase<GeneratorOm> {
             if(isReplicaitonRunNext){
                 out_scen_info_value.setSenderId("Rep_"+replicationCount);
 
-                out_scen_info_value.setResetInfo("FLEET");
+                out_scen_info_value.setResetInfo("Fleet");
                 out_scen_info.send(out_scen_info_value);
 
-                out_scen_info_value.setResetInfo("SUBMARINE");
+                out_scen_info_value.setResetInfo("Submarine");
                 out_scen_info.send(out_scen_info_value);
 
                 isReplicaitonRunNext = false;

@@ -16,11 +16,11 @@ public class SimModel extends CoupledModelBase {
     public InputPortBase<scen_info> in_scen_info;
     public InputPortBase<entity_info> in_entity_info;
 
-    public OutputPortBase<wp_launch> out_wp_launch;
+    public OutputPortBase<String> out_wp_launch;
     public OutputPortBase<Boolean> out_engage_result;
 
     public Platform fleet,submarine;
-    public Weapon decoy1,decoy2,torpedo;
+    //public Weapon decoy1,decoy2,torpedo;
     public Environment environment;
     public CommunicateBus bus;
     public DamageAssessment damageAssessment;
@@ -41,7 +41,7 @@ public class SimModel extends CoupledModelBase {
     protected void constructPort() {
         in_scen_info = new InputPortBase<scen_info>(this);
         in_entity_info = new InputPortBase<entity_info>(this);
-        out_wp_launch = new OutputPortBase<wp_launch>(this);
+        out_wp_launch = new OutputPortBase<String>(this);
         out_engage_result = new OutputPortBase<Boolean>(this);
     }
 
@@ -49,9 +49,9 @@ public class SimModel extends CoupledModelBase {
     protected void couplingComponent() {
         fleet = new Platform("fleet",this);
         submarine = new Platform("submarine",this);
-        decoy1 = new Weapon("decoy1",this);
-        decoy2 = new Weapon("decoy2",this);
-        torpedo = new Weapon("torpedo",this);
+//        decoy1 = new Weapon("decoy1",this);
+//        decoy2 = new Weapon("decoy2",this);
+//        torpedo = new Weapon("torpedo",this);
 
         environment = new Environment("env",this);
         damageAssessment = new DamageAssessment("asses",this);
@@ -60,9 +60,9 @@ public class SimModel extends CoupledModelBase {
 
         fleet.constructModel();
         submarine.constructModel();
-        decoy1.constructModel();
-        decoy2.constructModel();
-        torpedo.constructModel();
+//        decoy1.constructModel();
+//        decoy2.constructModel();
+//        torpedo.constructModel();
 
         environment.constructModel();
         damageAssessment.constructModel();
@@ -77,9 +77,9 @@ public class SimModel extends CoupledModelBase {
         this.addExternalInputCoupling(this.in_scen_info,fleet.in_scen_info);
         this.addExternalInputCoupling(this.in_scen_info,submarine.in_scen_info);
 
-        this.addExternalInputCoupling(this.in_entity_info,decoy1.in_entity_info);
-        this.addExternalInputCoupling(this.in_entity_info,decoy2.in_entity_info);
-        this.addExternalInputCoupling(this.in_entity_info,torpedo.in_entity_info);
+//        this.addExternalInputCoupling(this.in_entity_info,decoy1.in_entity_info);
+//        this.addExternalInputCoupling(this.in_entity_info,decoy2.in_entity_info);
+//        this.addExternalInputCoupling(this.in_entity_info,torpedo.in_entity_info);
 
         /**
          * EOC
@@ -93,29 +93,29 @@ public class SimModel extends CoupledModelBase {
          */
         this.addInternalCoupling(damageAssessment.out_engage_result,fleet.in_engage_result);
         this.addInternalCoupling(damageAssessment.out_engage_result,submarine.in_engage_result);
-        this.addInternalCoupling(damageAssessment.out_engage_result,torpedo.in_engage_result);
-        this.addInternalCoupling(damageAssessment.out_engage_result,decoy1.in_engage_result);
-        this.addInternalCoupling(damageAssessment.out_engage_result,decoy2.in_engage_result);
+//        this.addInternalCoupling(damageAssessment.out_engage_result,torpedo.in_engage_result);
+//        this.addInternalCoupling(damageAssessment.out_engage_result,decoy1.in_engage_result);
+//        this.addInternalCoupling(damageAssessment.out_engage_result,decoy2.in_engage_result);
 
 
-        this.addInternalCoupling(environment.out_env_info,decoy1.in_env_info);
-        this.addInternalCoupling(environment.out_env_info,decoy2.in_env_info);
+        //this.addInternalCoupling(environment.out_env_info,decoy1.in_env_info);
+        //this.addInternalCoupling(environment.out_env_info,decoy2.in_env_info);
         this.addInternalCoupling(environment.out_env_info,fleet.in_env_info);
-        this.addInternalCoupling(environment.out_env_info,torpedo.in_env_info);
+        //this.addInternalCoupling(environment.out_env_info,torpedo.in_env_info);
         this.addInternalCoupling(environment.out_env_info,submarine.in_env_info);
 
 
         this.addInternalCoupling(fleet.out_move_result,bus.in_move_result);
-        this.addInternalCoupling(decoy1.out_move_result,bus.in_move_result);
-        this.addInternalCoupling(decoy2.out_move_result,bus.in_move_result);
+        //this.addInternalCoupling(decoy1.out_move_result,bus.in_move_result);
+       // this.addInternalCoupling(decoy2.out_move_result,bus.in_move_result);
         this.addInternalCoupling(submarine.out_move_result,bus.in_move_result);
-        this.addInternalCoupling(torpedo.out_move_result,bus.in_move_result);
+       // this.addInternalCoupling(torpedo.out_move_result,bus.in_move_result);
 
         this.addInternalCoupling(bus.out_move_result,fleet.in_move_result);
-        this.addInternalCoupling(bus.out_move_result,decoy1.in_move_result);
-        this.addInternalCoupling(bus.out_move_result,decoy2.in_move_result);
+        //this.addInternalCoupling(bus.out_move_result,decoy1.in_move_result);
+        //this.addInternalCoupling(bus.out_move_result,decoy2.in_move_result);
         this.addInternalCoupling(bus.out_move_result,submarine.in_move_result);
-        this.addInternalCoupling(bus.out_move_result,torpedo.in_move_result);
+       // this.addInternalCoupling(bus.out_move_result,torpedo.in_move_result);
 
 
 

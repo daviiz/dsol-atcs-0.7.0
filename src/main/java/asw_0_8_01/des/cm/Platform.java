@@ -15,7 +15,7 @@ public class Platform extends CoupledModelBase {
     public InputPortBase<guidance_info> in_guidance_info;
 
     public OutputPortBase<move_result> out_move_result;
-    public OutputPortBase<wp_launch> out_wp_launch;
+    public OutputPortBase<String> out_wp_launch;
     public OutputPortBase<wp_guidance> out_wp_guidance;
 
     public PlatformController controller;
@@ -43,7 +43,7 @@ public class Platform extends CoupledModelBase {
         in_guidance_info = new InputPortBase<guidance_info>(this);
 
         out_move_result = new OutputPortBase<move_result>(this);
-        out_wp_launch = new OutputPortBase<wp_launch>(this);
+        out_wp_launch = new OutputPortBase<String>(this);
         out_wp_guidance = new OutputPortBase<wp_guidance>(this);
     }
 

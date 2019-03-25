@@ -3,6 +3,7 @@ package asw_0_8_01.main;
 import asw.soa.data.ViewData;
 import asw.soa.view.Visual2dService;
 import asw_0_8_01.des.cm.CombatSystem;
+import asw_0_8_01.des.exFrame.Generator;
 import nl.tudelft.simulation.dsol.SimRuntimeException;
 import nl.tudelft.simulation.dsol.logger.SimLogger;
 import nl.tudelft.simulation.dsol.model.AbstractDSOLModel;
@@ -43,9 +44,9 @@ public class CombatModel extends AbstractDSOLModel.TimeDouble<DEVSSimulatorInter
             root.model.fleet.maneuver.actor.setViewData(mData[0]);
             root.model.submarine.maneuver.actor.setViewData(mData[1]);
 
-            root.model.decoy1.maneuver.actor.setViewData(mData[2]);
-            root.model.decoy2.maneuver.actor.setViewData(mData[3]);
-            root.model.torpedo.maneuver.actor.setViewData(mData[4]);
+            //root.model.decoy1.maneuver.actor.setViewData(mData[2]);
+            //root.model.decoy2.maneuver.actor.setViewData(mData[3]);
+            //root.model.torpedo.maneuver.actor.setViewData(mData[4]);
 
             Visual2dService.getInstance().register(mData[0].name, simulator, mData[0]);
             Visual2dService.getInstance().register(mData[1].name, simulator, mData[1]);
