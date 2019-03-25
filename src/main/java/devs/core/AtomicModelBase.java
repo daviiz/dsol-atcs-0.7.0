@@ -59,6 +59,7 @@ public abstract class AtomicModelBase<OMType extends ObjectModelBase> extends At
     protected final void lambda() {
         //ensure updated message output each simulation frame:
         if(this.om == null){
+            System.out.println("!!! this.om == null");
             return;
         }
         //if(this.om.status){
