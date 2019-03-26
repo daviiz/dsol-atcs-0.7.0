@@ -10,4 +10,12 @@ public class entity_info extends PortTypeBase {
     private String resetInfo;//  "Decoy1" "Decoy2" "Torpedo"
     private CartesianPoint src;
     private CartesianPoint des;
+
+    public entity_info(){
+        resetInfo = "0";
+    }
+
+    public entity_info(String name){
+        this.resetInfo = name;
+    }
 }

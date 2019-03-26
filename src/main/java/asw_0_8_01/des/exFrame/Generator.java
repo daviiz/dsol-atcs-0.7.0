@@ -9,6 +9,7 @@ import devs.core.OutputPortBase;
 import nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.CoupledModel;
 import nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.Phase;
 import nl.tudelft.simulation.dsol.simulators.DEVSSimulator;
+import nl.tudelft.simulation.language.d3.CartesianPoint;
 
 public class Generator extends AtomicModelBase<GeneratorOm> {
 
@@ -94,13 +95,45 @@ public class Generator extends AtomicModelBase<GeneratorOm> {
     protected void lambdaFunc() {
         if(this.phase.getName().equals(GEN.getName())){
             if(isFireWeapon){
-                for (int i = 0; i < 2; i++) {
+                String[] cmds = in_wp_launch_value.split("\\$");
+                if(cmds.length == 5){
+                    String wpname = cmds[0];
+                    double x1 = Double.valueOf(cmds[1]);
+                    double y1 = Double.valueOf(cmds[2]);
+                    double x2 = Double.valueOf(cmds[3]);
+                    double y2 = Double.valueOf(cmds[4]);
 
+                    if(wpname.contains("Decoy")){
 
-                    out_entity_info_value[i].setSenderId("Rep_"+replicationCount);
+                        entity_info cmd = new entity_info();
+                        cmd.setSenderId("Rep_"+replicationCount);
+                        cmd.setSrc(new CartesianPoint(x1,y1,0.0));
+                        cmd.setDes(new CartesianPoint(x2,y2,0.0));
+                        cmd.setResetInfo("Decoy1");
+                        out_entity_info_value[0] = cmd;
+
+                        entity_info cmd2 = new entity_info();
+                        cmd2.setSenderId("Rep_"+replicationCount);
+                        cmd2.setSrc(new CartesianPoint(x1,y1,0.0));
+                        cmd2.setDes(new CartesianPoint(x2,y2,0.0));
+                        cmd2.setResetInfo("Decoy2");
+                        out_entity_info_value[1] = cmd2;
+                    }
+                    if(wpname.contains("Torpedo")){
+
+                        entity_info cmd = new entity_info();
+                        cmd.setSenderId("Rep_"+replicationCount);
+                        cmd.setSrc(new CartesianPoint(x1,y1,0.0));
+                        cmd.setDes(new CartesianPoint(x2,y2,0.0));
+                        cmd.setResetInfo("Torpedo");
+                        out_entity_info_value[0] = cmd;
+
+                        entity_info cmd2 = new entity_info();
+
+                        out_entity_info_value[1] = cmd2;
+                    }
+
                 }
-
-
                 out_entity_info.send(out_entity_info_value);
                 isFireWeapon = false;
             }

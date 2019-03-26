@@ -39,6 +39,7 @@ public class PlatformControllerActor extends AtomicModelBase<PlatformControllerA
     private boolean combatExecFlag = false;
     private boolean evasionExecFlag = false;
     private boolean reconExecFlag = false;
+    private threat_info thisModelInfo;
 
 
     public PlatformControllerActor(String modelName, CoupledModel.TimeDouble parentModel) {
@@ -67,10 +68,11 @@ public class PlatformControllerActor extends AtomicModelBase<PlatformControllerA
         this.om = new PlatformControllerActorOm();
         out_wp_launch_value = "0";
         out_move_cmd_value = "0";
-        entityName = "0";
+        this.entityName = this.fullName.split("\\.")[2];
         in_engage_result_value = true;
         in_scen_info_value = new scen_info();
         in_target_info_value = new threat_info();
+        thisModelInfo = new threat_info();
     }
 
     @Override
@@ -98,22 +100,6 @@ public class PlatformControllerActor extends AtomicModelBase<PlatformControllerA
 
     @Override
     protected void deltaExternalFunc(Object value) {
-//        if(this.activePort == in_engage_result){
-//            in_engage_result_value = (Boolean)value;
-//        }
-//        if(this.activePort == in_scen_info){
-//            in_scen_info_value = (scen_info)value;
-//        }
-//        if(this.activePort == in_target_info){
-//            in_target_info_value = (threat_info) value;
-//        }
-//        if(this.phase.getName().equals(IDLE.getName())){
-//            if(this.activePort == in_scen_info){
-//                in_scen_info_value = (scen_info)value;
-//                this.phase = RECONNAIASSANCE;
-//            }
-//        }
-
         switch (this.phase.getName()){
             case "IDLE" :{
                 if(this.activePort == in_scen_info){
@@ -123,6 +109,11 @@ public class PlatformControllerActor extends AtomicModelBase<PlatformControllerA
                 }
                 if(this.activePort == in_target_info){
                     in_target_info_value = (threat_info) value;
+
+                    if(this.entityName.equals(in_target_info_value.getName())){
+                        thisModelInfo = (threat_info) value;
+                    }
+
                     this.phase = APPROACH;
                 }
                 if(this.activePort == in_engage_result){
@@ -134,12 +125,20 @@ public class PlatformControllerActor extends AtomicModelBase<PlatformControllerA
             case "COMBAT" :{
                 if(this.activePort == in_target_info){
                     in_target_info_value = (threat_info) value;
+
+                    if(this.entityName.equals(in_target_info_value.getName())){
+                        thisModelInfo = (threat_info) value;
+                    }
                 }
                 break;
             }
             case "EVASION" :{
                 if(this.activePort == in_target_info){
                     in_target_info_value = (threat_info) value;
+
+                    if(this.entityName.equals(in_target_info_value.getName())){
+                        thisModelInfo = (threat_info) value;
+                    }
                 }
                 break;
             }
@@ -205,8 +204,18 @@ public class PlatformControllerActor extends AtomicModelBase<PlatformControllerA
     }
 
     private void combat(){
-        this.out_wp_launch_value = "LAUNCH";
-        combatExecFlag = true;
+        //"Torpedo$srcX$srcY$desX$desY"  "Decoy$srcX$srcY$desX$desY"
+        if(this.entityName.equals("Fleet") && !in_target_info_value.getName().equals("Fleet")){
+            out_wp_launch_value = "Decoy$"+thisModelInfo.getPosition().getX()+"$"+thisModelInfo.getPosition().getY()+"$"
+                                +in_target_info_value.getPosition().getX()+"$"+in_target_info_value.getPosition().getY()+"$";
+            combatExecFlag = true;
+        }
+        if(this.entityName.equals("Submarine") && !in_target_info_value.getName().equals("Submarine")){
+            out_wp_launch_value = "Submarine$"+thisModelInfo.getPosition().getX()+"$"+thisModelInfo.getPosition().getY()+"$"
+                    +in_target_info_value.getPosition().getX()+"$"+in_target_info_value.getPosition().getY()+"$";
+            combatExecFlag = true;
+        }
+        combatExecFlag = false;
     }
 
     private void evasion(){
