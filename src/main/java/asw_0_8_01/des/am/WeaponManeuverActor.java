@@ -15,7 +15,7 @@ public class WeaponManeuverActor extends AtomicModelBase<WeaponManeuverActorOm> 
 
     public InputPortBase<Boolean> in_engage_result;
     public InputPortBase<env_info> in_env_info;
-    public InputPortBase<entity_info> in_entity_info;
+    public InputPortBase<entity_info[]> in_entity_info;
 
     public InputPortBase<String> in_cmd_info;
 
@@ -45,7 +45,7 @@ public class WeaponManeuverActor extends AtomicModelBase<WeaponManeuverActorOm> 
     protected void constructPort() {
         in_engage_result = new InputPortBase<Boolean>(this);
         in_env_info = new InputPortBase<env_info>(this);
-        in_entity_info = new InputPortBase<entity_info>(this);
+        in_entity_info = new InputPortBase<entity_info[]>(this);
 
         in_cmd_info = new InputPortBase<String>(this);
 

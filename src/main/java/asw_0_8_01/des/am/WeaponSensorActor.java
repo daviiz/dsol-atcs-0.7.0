@@ -12,7 +12,7 @@ import nl.tudelft.simulation.dsol.simulators.DEVSSimulator;
 
 public class WeaponSensorActor extends AtomicModelBase<WeaponSensorActorOm> {
 
-    public InputPortBase<entity_info> in_entity_info;
+    public InputPortBase<entity_info[]> in_entity_info;
     public InputPortBase<env_info> in_env_info;
     public InputPortBase<Boolean> in_engage_result;
     public InputPortBase<String> in_response;
@@ -30,7 +30,7 @@ public class WeaponSensorActor extends AtomicModelBase<WeaponSensorActorOm> {
 
     @Override
     protected void constructPort() {
-        in_entity_info = new InputPortBase<entity_info>(this);
+        in_entity_info = new InputPortBase<entity_info[]>(this);
         in_env_info = new InputPortBase<env_info>(this);
         in_engage_result = new InputPortBase<Boolean>(this);
         in_response = new InputPortBase<String>(this);

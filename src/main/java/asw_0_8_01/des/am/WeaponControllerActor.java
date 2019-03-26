@@ -13,7 +13,7 @@ public class WeaponControllerActor extends AtomicModelBase<WeaponControllerActor
 
     public InputPortBase<Boolean> in_move_finished;
     public InputPortBase<Boolean> in_engage_result;
-    public InputPortBase<entity_info> in_entity_info;
+    public InputPortBase<entity_info[]> in_entity_info;
     public InputPortBase<target_info> in_target_info;
 
     public OutputPortBase<String> out_move_cmd;
@@ -30,7 +30,7 @@ public class WeaponControllerActor extends AtomicModelBase<WeaponControllerActor
     protected void constructPort() {
         in_move_finished = new InputPortBase<Boolean>(this);
         in_engage_result = new InputPortBase<Boolean>(this);
-        in_entity_info = new InputPortBase<entity_info>(this);
+        in_entity_info = new InputPortBase<entity_info[]>(this);
         in_target_info = new InputPortBase<target_info>(this);
 
         out_move_cmd = new OutputPortBase<String>(this);

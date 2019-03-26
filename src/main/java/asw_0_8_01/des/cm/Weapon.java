@@ -10,7 +10,7 @@ import nl.tudelft.simulation.dsol.simulators.DEVSSimulatorInterface;
 
 public class Weapon extends CoupledModelBase {
 
-    public InputPortBase<entity_info> in_entity_info;
+    public InputPortBase<entity_info[]> in_entity_info;
     public InputPortBase<env_info> in_env_info;
     public InputPortBase<Boolean> in_engage_result;
     public InputPortBase<move_result> in_move_result;
@@ -35,7 +35,7 @@ public class Weapon extends CoupledModelBase {
 
     @Override
     protected void constructPort() {
-        in_entity_info = new InputPortBase<entity_info>(this);
+        in_entity_info = new InputPortBase<entity_info[]>(this);
         in_env_info = new InputPortBase<env_info>(this);
         in_engage_result = new InputPortBase<Boolean>(this);
         in_move_result = new InputPortBase<move_result>(this);

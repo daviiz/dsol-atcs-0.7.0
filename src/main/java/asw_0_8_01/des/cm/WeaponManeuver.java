@@ -14,7 +14,7 @@ public class WeaponManeuver extends CoupledModelBase {
 
     public InputPortBase<Boolean> in_engage_result;
     public InputPortBase<env_info> in_env_info;
-    public InputPortBase<entity_info> in_entity_info;
+    public InputPortBase<entity_info[]> in_entity_info;
     public InputPortBase<String> in_move_cmd;
 
     public OutputPortBase<Boolean> out_move_finished;
@@ -40,7 +40,7 @@ public class WeaponManeuver extends CoupledModelBase {
     protected void constructPort() {
         in_engage_result = new InputPortBase<Boolean>(this);
         in_env_info = new InputPortBase<env_info>(this);
-        in_entity_info = new InputPortBase<entity_info>(this);
+        in_entity_info = new InputPortBase<entity_info[]>(this);
         in_move_cmd = new InputPortBase<String>(this);
 
         out_move_finished = new OutputPortBase<Boolean>(this);

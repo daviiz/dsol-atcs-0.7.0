@@ -16,12 +16,12 @@ public class Generator extends AtomicModelBase<GeneratorOm> {
     public InputPortBase<String> in_wp_launch;
     public InputPortBase<Boolean> in_engage_result;
     public OutputPortBase<scen_info> out_scen_info;
-    public OutputPortBase<entity_info> out_entity_info;
+    public OutputPortBase<entity_info[]> out_entity_info;
 
     private String in_wp_launch_value;
     private boolean in_engage_result_value;
     private scen_info out_scen_info_value;
-    private entity_info out_entity_info_value;
+    private entity_info[] out_entity_info_value;
 
     private boolean isFireWeapon = false;
     private boolean isReplicaitonRunNext = false;
@@ -34,7 +34,7 @@ public class Generator extends AtomicModelBase<GeneratorOm> {
     protected void constructPort() {
         in_wp_launch = new InputPortBase<String>(this);
         in_engage_result = new InputPortBase<Boolean>(this);
-        out_entity_info = new OutputPortBase<entity_info>(this);
+        out_entity_info = new OutputPortBase<entity_info[]>(this);
         out_scen_info = new OutputPortBase<scen_info>(this);
     }
 
@@ -44,7 +44,7 @@ public class Generator extends AtomicModelBase<GeneratorOm> {
         in_wp_launch_value = "";
         in_engage_result_value = false;
         out_scen_info_value = new scen_info();
-        out_entity_info_value = new entity_info();
+        out_entity_info_value = new entity_info[2];
 
     }
 
@@ -94,10 +94,14 @@ public class Generator extends AtomicModelBase<GeneratorOm> {
     protected void lambdaFunc() {
         if(this.phase.getName().equals(GEN.getName())){
             if(isFireWeapon){
+                for (int i = 0; i < 2; i++) {
 
-                out_entity_info_value.setSenderId("Rep_"+replicationCount);
+
+                    out_entity_info_value[i].setSenderId("Rep_"+replicationCount);
+                }
+
+
                 out_entity_info.send(out_entity_info_value);
-
                 isFireWeapon = false;
             }
             if(isReplicaitonRunNext){
