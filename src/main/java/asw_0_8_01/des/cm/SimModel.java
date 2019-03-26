@@ -47,8 +47,8 @@ public class SimModel extends CoupledModelBase {
 
     @Override
     protected void couplingComponent() {
-        fleet = new Platform("fleet",this);
-        submarine = new Platform("submarine",this);
+        fleet = new Platform("Fleet",this);
+        submarine = new Platform("Submarine",this);
 //        decoy1 = new Weapon("decoy1",this);
 //        decoy2 = new Weapon("decoy2",this);
 //        torpedo = new Weapon("torpedo",this);

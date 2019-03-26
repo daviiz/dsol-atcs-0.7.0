@@ -35,6 +35,7 @@ public class PlatformControllerActor extends AtomicModelBase<PlatformControllerA
     private boolean apprchExecFlag = false;
     private boolean combatExecFlag = false;
     private boolean evasionExecFlag = false;
+    private boolean reconExecFlag = false;
 
 
     public PlatformControllerActor(String modelName, CoupledModel.TimeDouble parentModel) {
@@ -114,7 +115,7 @@ public class PlatformControllerActor extends AtomicModelBase<PlatformControllerA
             case "IDLE" :{
                 if(this.activePort == in_scen_info){
                     in_scen_info_value = (scen_info)value;
-                    this.entityName = in_scen_info_value.getResetInfo();
+                    this.entityName = this.fullName.split("\\.")[2];
                     this.phase = RECONNAIASSANCE;
                 }
                 if(this.activePort == in_target_info){
@@ -139,6 +140,7 @@ public class PlatformControllerActor extends AtomicModelBase<PlatformControllerA
                 }
                 break;
             }
+
         }
     }
 
@@ -147,14 +149,22 @@ public class PlatformControllerActor extends AtomicModelBase<PlatformControllerA
         switch (this.phase.getName()){
             case "APPROACH":{
                 this.apprch();
+                this.phase = COMBAT;
                 break;
             }
             case "COMBAT":{
                 this.combat();
+                this.phase = EVASION;
                 break;
             }
             case "EVASION":{
                 this.evasion();
+                this.phase = IDLE;
+                break;
+            }
+            case "RECONNAIASSANCE" :{
+                this.recon();
+                this.phase = IDLE;
                 break;
             }
         }
@@ -162,36 +172,30 @@ public class PlatformControllerActor extends AtomicModelBase<PlatformControllerA
 
     @Override
     protected void lambdaFunc() {
-        switch (this.phase.getName()){
-            case "APPROACH":{
-                if(apprchExecFlag){
-                    this.phase = COMBAT;
-                    this.out_move_cmd.send(out_move_cmd_value);
-                    apprchExecFlag = false;
-                }
-                break;
-            }
-            case "COMBAT":{
-                if(combatExecFlag){
-                    this.out_wp_launch.send(out_wp_launch_value);
-                    this.phase = EVASION;
-                    combatExecFlag = false;
-                }
-                break;
-            }
-            case "EVASION":{
-                if(evasionExecFlag){
-                    this.out_move_cmd.send(out_move_cmd_value);
-                    this.phase = EVASION;
-                    evasionExecFlag = false;
-                }
-                break;
-            }
+
+        if(apprchExecFlag){
+            this.out_move_cmd.send(out_move_cmd_value);
+            apprchExecFlag = false;
         }
+
+        if(combatExecFlag){
+            this.out_wp_launch.send(out_wp_launch_value);
+            combatExecFlag = false;
+        }
+
+        if(evasionExecFlag){
+            this.out_move_cmd.send(out_move_cmd_value);
+            evasionExecFlag = false;
+        }
+        if(reconExecFlag){
+            this.out_move_cmd.send(out_move_cmd_value);
+            reconExecFlag = false;
+        }
+
     }
 
     private void apprch(){
-        if(this.entityName.contains("Submarine")) {
+        if(this.entityName.contains("Submarine") && !in_target_info_value.getName().equals("Submarine")) {
             this.out_move_cmd_value = "APPROACH$"+this.in_target_info_value.getPosition().getX()+"$"+this.in_target_info_value.getPosition().getY()+"";
         }
         apprchExecFlag = true;
@@ -203,9 +207,24 @@ public class PlatformControllerActor extends AtomicModelBase<PlatformControllerA
     }
 
     private void evasion(){
-        if(this.entityName.contains("Fleet")) {
+        if(this.entityName.contains("Fleet") && !in_target_info_value.getName().equals("Fleet")) {
             this.out_move_cmd_value = "EVASION$"+this.in_target_info_value.getPosition().getX()+"$"+this.in_target_info_value.getPosition().getY()+"";
         }
         evasionExecFlag = true;
+    }
+
+    private void recon(){
+        if(in_target_info_value.getName().equals("0"))
+        {
+            reconExecFlag = false;
+        }else{
+            if(this.entityName.contains("Submarine")) {
+                this.out_move_cmd_value = "APPROACH$"+this.in_target_info_value.getPosition().getX()+"$"+this.in_target_info_value.getPosition().getY()+"";
+            }
+            if(this.entityName.contains("Fleet")) {
+                this.out_move_cmd_value = "EVASION$"+this.in_target_info_value.getPosition().getX()+"$"+this.in_target_info_value.getPosition().getY()+"";
+            }
+            reconExecFlag = true;
+        }
     }
 }

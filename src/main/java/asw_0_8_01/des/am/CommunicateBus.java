@@ -47,7 +47,7 @@ public class CommunicateBus extends AtomicModelBase<ObjectModelBase> {
         // convert move_result to env_info
         // ...
         if(tmp.getCmp() !=0){
-            if(result.containsKey(tmp.getSenderId())){
+            if(result.containsKey(tmp.getName())){
                 result.replace(tmp.getName(),tmp);
             }else{
                 result.put(tmp.getName(),tmp);

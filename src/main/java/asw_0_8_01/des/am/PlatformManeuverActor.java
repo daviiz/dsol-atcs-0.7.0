@@ -2,6 +2,7 @@ package asw_0_8_01.des.am;
 
 import asw.soa.data.ViewData;
 import asw.soa.util.SimUtil;
+import asw.soa.view.Visual2dService;
 import asw_0_8_01.om.PlatformManeuverActorOm;
 import asw_0_8_01.portMsgType.env_info;
 import asw_0_8_01.portMsgType.move_result;
@@ -13,6 +14,9 @@ import nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.CoupledModel;
 import nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.Phase;
 import nl.tudelft.simulation.dsol.simulators.DEVSSimulator;
 import nl.tudelft.simulation.language.d3.CartesianPoint;
+
+import javax.naming.NamingException;
+import java.rmi.RemoteException;
 
 public class PlatformManeuverActor extends AtomicModelBase<PlatformManeuverActorOm> {
 
@@ -48,6 +52,7 @@ public class PlatformManeuverActor extends AtomicModelBase<PlatformManeuverActor
     public void setViewData(ViewData viewData) {
         this.viewData = viewData;
     }
+
 
     public PlatformManeuverActor(String modelName, CoupledModel.TimeDouble parentModel) {
         super(modelName, parentModel);
@@ -92,10 +97,36 @@ public class PlatformManeuverActor extends AtomicModelBase<PlatformManeuverActor
             if(this.activePort == in_scen_info){
                 in_scen_info_value = ((scen_info) value);
                 String entityName = in_scen_info_value.getResetInfo();
-                if(entityName.equals(this.viewData.name)){
-                    //setViewData(new ViewData(entityName));
+                String[] tt = this.fullName.split("\\.");
+                String modelName = tt[2];
+                if(entityName.equals("Fleet") && modelName.equals("Fleet")){
+                    viewData = new ViewData("Fleet");
+                    viewData.origin = viewData.destination = new CartesianPoint(-200, -50, 0);
+                    viewData.status = true;
+
+                    try {
+                        Visual2dService.getInstance().register(viewData.name, simulator, viewData);
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    } catch (NamingException e) {
+                        e.printStackTrace();
+                    }
+                    this.phase = MOVE;
                 }
-                //this.phase = MOVE;
+                else if(entityName.equals("Submarine") && modelName.equals("Submarine")){
+                    viewData= new ViewData("Submarine");
+                    viewData.origin = viewData.destination = new CartesianPoint(200, 100, 0);
+                    viewData.status = true;
+
+                    try {
+                        Visual2dService.getInstance().register(viewData.name, simulator, viewData);
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    } catch (NamingException e) {
+                        e.printStackTrace();
+                    }
+                    this.phase = MOVE;
+                }
                 return;
             }
             if(this.activePort == in_cmd_info){
@@ -151,7 +182,7 @@ public class PlatformManeuverActor extends AtomicModelBase<PlatformManeuverActor
     protected void lambdaFunc() {
         if(this.phase.getName().equals(MOVE.getName()) && !out_move_result_value.getName().equals("0")){
             this.out_move_result.send(out_move_result_value);
-            out_move_result_value.setName("0");
+            //out_move_result_value.setName("0");
             this.phase = FUEL;
         }
         if(this.phase.getName().equals(FUEL.getName()) && fuelInterDoneFlag){
@@ -172,9 +203,22 @@ public class PlatformManeuverActor extends AtomicModelBase<PlatformManeuverActor
             this.viewData.destination = new CartesianPoint(viewData.origin.x, viewData.origin.y, 0);
             this.viewData.remainingTime = 0.0;
         } else {
-            String[] cmd_info = in_cmd_info_value.split("$"); //  "APPROACH$152.2$202.5"
-            viewData.destination = SimUtil.nextPoint(this.viewData.origin.x,this.viewData.origin.y,Double.valueOf(cmd_info[1]),Double.valueOf(cmd_info[2]),
-                    this.viewData.speed,(cmd_info[0].equals("APPROACH")));
+            if(in_cmd_info_value.equals("0")){
+                viewData.destination = new CartesianPoint(viewData.origin.x+this.viewData.speed, viewData.origin.y+this.viewData.speed, 0);
+            }else{
+                String[] cmd_info = in_cmd_info_value.split("\\$"); //  "APPROACH$152.2$202.5"
+                String cmd = cmd_info[0];
+                double x = Double.valueOf(cmd_info[1]);
+                double y = Double.valueOf(cmd_info[2]);
+                viewData.destination = SimUtil.nextPoint(this.viewData.origin.x,this.viewData.origin.y,x,y,
+                        this.viewData.speed,(cmd.equals("APPROACH")));
+
+            }
+            if(this.fullName.split("\\.")[2].equals("Submarine")){
+                System.out.println("================destination: x = "+viewData.origin.getX()+", y = "+viewData.origin.getY());
+                System.out.println("================destination: x = "+viewData.destination.getX()+", y = "+viewData.destination.getY());
+                System.out.println();
+            }
             this.viewData.remainingTime -= this.phase.getLifeTime();
 
             this.out_move_result_value.setName(this.viewData.name);

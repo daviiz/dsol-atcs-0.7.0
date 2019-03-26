@@ -22,7 +22,7 @@ public class PlatformSensorActor extends AtomicModelBase<PlatformSensorActorOm> 
     public InputPortBase<scen_info> in_scen_info;
     public InputPortBase<env_info> in_env_info;
     public InputPortBase<Boolean> in_engage_result;
-    public InputPortBase<HashMap<String, move_result>> in_response;
+    public InputPortBase<move_result[]> in_response;
 
     public OutputPortBase<String> out_request;
     public OutputPortBase<threat_info> out_threat_info;
@@ -35,6 +35,8 @@ public class PlatformSensorActor extends AtomicModelBase<PlatformSensorActorOm> 
     private threat_info out_threat_info_value;
 
     private String entityName;
+    private boolean detectnterFuncExecFlag = false;
+    private boolean fireRequest = false;
 
 
     public PlatformSensorActor(String modelName, CoupledModel.TimeDouble parentModel) {
@@ -50,7 +52,7 @@ public class PlatformSensorActor extends AtomicModelBase<PlatformSensorActorOm> 
         in_scen_info = new InputPortBase<scen_info>(this);
         in_env_info = new InputPortBase<env_info>(this);
         in_engage_result = new InputPortBase<Boolean>(this);
-        in_response = new InputPortBase<HashMap<String,move_result>>(this);
+        in_response = new InputPortBase<move_result[]>(this);
 
         out_request = new OutputPortBase<String>(this);
         out_threat_info = new OutputPortBase<threat_info>(this);
@@ -80,8 +82,11 @@ public class PlatformSensorActor extends AtomicModelBase<PlatformSensorActorOm> 
         if(this.phase.getName().equals(IDLE.getName())){
             if(this.activePort == in_scen_info){
                 in_scen_info_value = ((scen_info)value);
-                entityName = in_scen_info_value.getResetInfo();
-                this.phase = PERIOD;
+                entityName = this.fullName.split("\\.")[2];
+                if(entityName.equals(in_scen_info_value.getResetInfo()))
+                {
+                    this.phase = PERIOD;
+                }
             }
             return;
         }
@@ -107,7 +112,23 @@ public class PlatformSensorActor extends AtomicModelBase<PlatformSensorActorOm> 
         }
         if(this.phase.getName().equals(REQUEST.getName())){
             if(this.activePort == in_response){
-                this.entitiesData = ((HashMap<String, move_result>)value);
+                move_result[] results = new move_result[10];
+                results = (move_result[])value;
+
+                for(int i=0; i<10 && results[i]!= null;i++){
+                    this.entitiesData.put(results[i].getName(),results[i]);
+                }
+//                move_result  v = (move_result)value;
+//                if(v.getName().equals("Submarine")){
+//                    int x = 1;
+//                }
+//                if(v.getName().equals("0")){
+//                    int x = 2;
+//                }
+//                if (!v.getName().equals("0")){
+//                    this.entitiesData.put(v.getName(),v);
+//                }
+
                 this.phase = DETECT;
                 return;
             }
@@ -121,22 +142,26 @@ public class PlatformSensorActor extends AtomicModelBase<PlatformSensorActorOm> 
     @Override
     protected void deltaInternalFunc() {
         if(this.phase.getName().equals(PERIOD.getName())){
-            this.phase = REQUEST;
+            fireRequest = true;
+
         }
         if(this.phase.getName().equals(DETECT.getName())){
             this.detection_Algorithm();
+            this.phase = PERIOD;
         }
     }
 
     @Override
     protected void lambdaFunc() {
-        if(this.phase.getName().equals(PERIOD.getName())){
+        if(fireRequest){
             this.out_request.send("REQUEST");
+            this.phase = REQUEST;
+            fireRequest = false;
         }
-        if(this.phase.getName().equals(DETECT.getName()) && !out_threat_info_value.getName().equals("0")){
+        if(detectnterFuncExecFlag && !out_threat_info_value.getName().equals("0")){
             this.out_threat_info.send(out_threat_info_value);
-            out_threat_info_value.setName("0");
-            this.phase = PERIOD;
+            //this.phase = PERIOD;
+            detectnterFuncExecFlag = false;
         }
     }
 
@@ -167,5 +192,6 @@ public class PlatformSensorActor extends AtomicModelBase<PlatformSensorActorOm> 
                 out_threat_info_value = new threat_info(entity);
             }
         }
+        detectnterFuncExecFlag = true;
     }
 }

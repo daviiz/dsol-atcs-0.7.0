@@ -58,7 +58,7 @@ public class PlatformControllerUpdater extends AtomicModelBase<PlatformControlle
         if (this.phase.getName().equals(WAIT.getName())) {
             if (this.activePort == in_scen_info) {
                 scen_info tmp = ((scen_info)value);
-                this.entityName = tmp.getResetInfo();
+                this.entityName = this.fullName.split("\\.")[2];
                 return;
             }
             if (this.activePort == in_threat_info) {
