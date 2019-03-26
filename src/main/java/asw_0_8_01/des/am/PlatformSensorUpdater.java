@@ -1,9 +1,7 @@
 package asw_0_8_01.des.am;
 
-import asw.soa.util.SimUtil;
 import asw_0_8_01.om.PlatformSensorUpdaterOm;
 import asw_0_8_01.portMsgType.move_result;
-import asw_0_8_01.portMsgType.threat_info;
 import devs.core.AtomicModelBase;
 import devs.core.InputPortBase;
 import devs.core.OutputPortBase;
@@ -11,7 +9,6 @@ import nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.CoupledModel;
 import nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.Phase;
 import nl.tudelft.simulation.dsol.simulators.DEVSSimulator;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;

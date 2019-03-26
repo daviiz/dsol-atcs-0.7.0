@@ -2,7 +2,10 @@ package asw_0_8_01.des.cm;
 
 import asw_0_8_01.des.am.PlatformControllerActor;
 import asw_0_8_01.des.am.PlatformControllerUpdater;
-import asw_0_8_01.portMsgType.*;
+import asw_0_8_01.portMsgType.guidance_info;
+import asw_0_8_01.portMsgType.scen_info;
+import asw_0_8_01.portMsgType.threat_info;
+import asw_0_8_01.portMsgType.wp_guidance;
 import devs.core.CoupledModelBase;
 import devs.core.InputPortBase;
 import devs.core.OutputPortBase;

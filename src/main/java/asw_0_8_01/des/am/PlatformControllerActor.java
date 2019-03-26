@@ -1,7 +1,10 @@
 package asw_0_8_01.des.am;
 
 import asw_0_8_01.om.PlatformControllerActorOm;
-import asw_0_8_01.portMsgType.*;
+import asw_0_8_01.portMsgType.guidance_info;
+import asw_0_8_01.portMsgType.scen_info;
+import asw_0_8_01.portMsgType.threat_info;
+import asw_0_8_01.portMsgType.wp_guidance;
 import devs.core.AtomicModelBase;
 import devs.core.InputPortBase;
 import devs.core.OutputPortBase;

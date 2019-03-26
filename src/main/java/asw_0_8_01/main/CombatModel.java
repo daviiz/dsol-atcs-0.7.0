@@ -1,17 +1,9 @@
 package asw_0_8_01.main;
 
-import asw.soa.data.ViewData;
-import asw.soa.view.Visual2dService;
 import asw_0_8_01.des.cm.CombatSystem;
-import asw_0_8_01.des.exFrame.Generator;
 import nl.tudelft.simulation.dsol.SimRuntimeException;
-import nl.tudelft.simulation.dsol.logger.SimLogger;
 import nl.tudelft.simulation.dsol.model.AbstractDSOLModel;
 import nl.tudelft.simulation.dsol.simulators.DEVSSimulatorInterface;
-import nl.tudelft.simulation.language.d3.CartesianPoint;
-
-import javax.naming.NamingException;
-import java.rmi.RemoteException;
 
 public class CombatModel extends AbstractDSOLModel.TimeDouble<DEVSSimulatorInterface.TimeDouble>{
     @Override

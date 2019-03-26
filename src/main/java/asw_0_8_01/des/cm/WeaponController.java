@@ -2,7 +2,8 @@ package asw_0_8_01.des.cm;
 
 import asw_0_8_01.des.am.WeaponControllerActor;
 import asw_0_8_01.des.am.WeaponControllerUpdater;
-import asw_0_8_01.portMsgType.*;
+import asw_0_8_01.portMsgType.entity_info;
+import asw_0_8_01.portMsgType.threat_info;
 import devs.core.CoupledModelBase;
 import devs.core.InputPortBase;
 import devs.core.OutputPortBase;

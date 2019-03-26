@@ -12,7 +12,6 @@ import devs.core.OutputPortBase;
 import nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.CoupledModel;
 import nl.tudelft.simulation.dsol.formalisms.devs.ESDEVS.Phase;
 import nl.tudelft.simulation.dsol.simulators.DEVSSimulator;
-import nl.tudelft.simulation.language.d3.CartesianPoint;
 
 import java.util.HashMap;
 import java.util.Iterator;

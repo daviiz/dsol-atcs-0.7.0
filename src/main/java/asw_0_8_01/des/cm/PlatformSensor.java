@@ -2,7 +2,10 @@ package asw_0_8_01.des.cm;
 
 import asw_0_8_01.des.am.PlatformSensorActor;
 import asw_0_8_01.des.am.PlatformSensorUpdater;
-import asw_0_8_01.portMsgType.*;
+import asw_0_8_01.portMsgType.env_info;
+import asw_0_8_01.portMsgType.move_result;
+import asw_0_8_01.portMsgType.scen_info;
+import asw_0_8_01.portMsgType.threat_info;
 import devs.core.CoupledModelBase;
 import devs.core.InputPortBase;
 import devs.core.OutputPortBase;

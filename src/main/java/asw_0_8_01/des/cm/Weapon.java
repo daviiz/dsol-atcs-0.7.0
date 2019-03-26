@@ -1,6 +1,8 @@
 package asw_0_8_01.des.cm;
 
-import asw_0_8_01.portMsgType.*;
+import asw_0_8_01.portMsgType.entity_info;
+import asw_0_8_01.portMsgType.env_info;
+import asw_0_8_01.portMsgType.move_result;
 import devs.core.CoupledModelBase;
 import devs.core.InputPortBase;
 import devs.core.OutputPortBase;

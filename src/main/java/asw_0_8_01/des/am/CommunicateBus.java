@@ -1,7 +1,6 @@
 package asw_0_8_01.des.am;
 
 import asw_0_8_01.portMsgType.move_result;
-import combatSysModel.portType.env_info;
 import devs.core.AtomicModelBase;
 import devs.core.InputPortBase;
 import devs.core.ObjectModelBase;

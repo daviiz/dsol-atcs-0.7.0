@@ -5,7 +5,6 @@ import asw_0_8_01.des.am.DamageAssessment;
 import asw_0_8_01.des.am.Environment;
 import asw_0_8_01.portMsgType.entity_info;
 import asw_0_8_01.portMsgType.scen_info;
-import asw_0_8_01.portMsgType.wp_launch;
 import devs.core.CoupledModelBase;
 import devs.core.InputPortBase;
 import devs.core.OutputPortBase;
