@@ -40,6 +40,7 @@ public class PlatformControllerActor extends AtomicModelBase<PlatformControllerA
     private boolean evasionExecFlag = false;
     private boolean reconExecFlag = false;
     private threat_info thisModelInfo;
+    private boolean wpLaunched = false;
 
 
     public PlatformControllerActor(String modelName, CoupledModel.TimeDouble parentModel) {
@@ -180,9 +181,10 @@ public class PlatformControllerActor extends AtomicModelBase<PlatformControllerA
             apprchExecFlag = false;
         }
 
-        if(combatExecFlag){
+        if(combatExecFlag && !wpLaunched){
             this.out_wp_launch.send(out_wp_launch_value);
             combatExecFlag = false;
+            wpLaunched = true;
         }
 
         if(evasionExecFlag){
@@ -210,12 +212,11 @@ public class PlatformControllerActor extends AtomicModelBase<PlatformControllerA
                                 +in_target_info_value.getPosition().getX()+"$"+in_target_info_value.getPosition().getY()+"$";
             combatExecFlag = true;
         }
-        if(this.entityName.equals("Submarine") && !in_target_info_value.getName().equals("Submarine")){
-            out_wp_launch_value = "Submarine$"+thisModelInfo.getPosition().getX()+"$"+thisModelInfo.getPosition().getY()+"$"
-                    +in_target_info_value.getPosition().getX()+"$"+in_target_info_value.getPosition().getY()+"$";
+        if(this.entityName.equals("Submarine") && !in_target_info_value.getName().equals("Submarine")) {
+            out_wp_launch_value = "Torpedo$" + thisModelInfo.getPosition().getX() + "$" + thisModelInfo.getPosition().getY() + "$"
+                    + in_target_info_value.getPosition().getX() + "$" + in_target_info_value.getPosition().getY() + "$";
             combatExecFlag = true;
         }
-        combatExecFlag = false;
     }
 
     private void evasion(){

@@ -48,9 +48,9 @@ public class SimModel extends CoupledModelBase {
     protected void couplingComponent() {
         fleet = new Platform("Fleet",this);
         submarine = new Platform("Submarine",this);
-        decoy1 = new Weapon("decoy1",this);
-        decoy2 = new Weapon("decoy2",this);
-        torpedo = new Weapon("torpedo",this);
+        decoy1 = new Weapon("Decoy1",this);
+        decoy2 = new Weapon("Decoy2",this);
+        torpedo = new Weapon("Torpedo",this);
 
         environment = new Environment("env",this);
         damageAssessment = new DamageAssessment("asses",this);
