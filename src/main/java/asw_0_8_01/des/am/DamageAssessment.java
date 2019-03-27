@@ -33,6 +33,8 @@ public class DamageAssessment extends AtomicModelBase<DamageAssessmentOm> {
      */
     private boolean DA_Status;
 
+    private boolean isSameRepFlag = false;
+
     private Phase PERIOD,VA,END;
 
     public DamageAssessment(String modelName, CoupledModel.TimeDouble parentModel) {
@@ -71,7 +73,7 @@ public class DamageAssessment extends AtomicModelBase<DamageAssessmentOm> {
 
     @Override
     protected void deltaExternalFunc(Object value) {
-        if(this.activePort == in_move_result && this.phase == PERIOD){
+        if(this.activePort == in_move_result){
             in_move_result_value = (move_result)value;
             if(in_move_result_value.getName().equals("Fleet")){
                 fleetLoc = in_move_result_value;
@@ -82,9 +84,10 @@ public class DamageAssessment extends AtomicModelBase<DamageAssessmentOm> {
 
         }
         //毁伤模型重置：
-        if(in_scen_info == this.activePort){
+        if(in_scen_info == this.activePort && !isSameRepFlag){
             this.phase = PERIOD;
             DA_Status = false;
+            isSameRepFlag = true;
         }
     }
 
@@ -94,21 +97,22 @@ public class DamageAssessment extends AtomicModelBase<DamageAssessmentOm> {
             this.phase = VA;
             return;
         }
-        if(this.phase == VA){
-            this.DA_Status = this.DA_Algorithm();
+        if(this.phase == VA ){
+            if(isSameRepFlag) {
+                this.DA_Status = this.DA_Algorithm();
+            }
+            this.phase = PERIOD;
         }
     }
 
     @Override
     protected void lambdaFunc() {
-        if(this.phase == VA){
-            if(this.DA_Status){
-                out_engage_result.send(this.out_engage_result_value);
-                this.phase = END;
-            }else{
-                this.phase = PERIOD;
-            }
+        if(this.DA_Status){
+            out_engage_result.send(this.out_engage_result_value);
+            isSameRepFlag = false;
+            this.phase = END;
         }
+
     }
 
     /**

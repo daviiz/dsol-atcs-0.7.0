@@ -19,7 +19,9 @@ public class SimModel extends CoupledModelBase {
     public OutputPortBase<Boolean> out_engage_result;
 
     public Platform fleet,submarine;
-    public Weapon decoy1,decoy2,torpedo;
+    public Weapon decoy1;
+    public Weapon decoy2;
+    public Weapon torpedo;
     public Environment environment;
     public CommunicateBus bus;
     public DamageAssessment damageAssessment;
@@ -97,6 +99,11 @@ public class SimModel extends CoupledModelBase {
         this.addInternalCoupling(damageAssessment.out_engage_result,decoy2.in_engage_result);
 
 
+        this.addInternalCoupling(fleet.out_move_result,damageAssessment.in_move_result);
+        this.addInternalCoupling(torpedo.out_move_result,damageAssessment.in_move_result);
+
+
+
         this.addInternalCoupling(environment.out_env_info,decoy1.in_env_info);
         this.addInternalCoupling(environment.out_env_info,decoy2.in_env_info);
         this.addInternalCoupling(environment.out_env_info,fleet.in_env_info);
@@ -115,14 +122,6 @@ public class SimModel extends CoupledModelBase {
         this.addInternalCoupling(bus.out_move_result,decoy2.in_move_result);
         this.addInternalCoupling(bus.out_move_result,submarine.in_move_result);
         this.addInternalCoupling(bus.out_move_result,torpedo.in_move_result);
-
-
-
-
-
-
-
-
 
     }
 }

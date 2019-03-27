@@ -93,6 +93,16 @@ public class PlatformManeuverActor extends AtomicModelBase<PlatformManeuverActor
 
     @Override
     protected void deltaExternalFunc(Object value) {
+
+        if(this.activePort == in_engage_result){
+            /**
+             * 得到一個交戰結果，目的是停止机动：
+             */
+            in_engage_result_value = ((Boolean) value);
+            this.phase = IDLE;
+            return;
+        }
+
         if(this.phase.getName().equals(IDLE.getName())){
             if(this.activePort == in_scen_info){
                 in_scen_info_value = ((scen_info) value);
@@ -137,14 +147,7 @@ public class PlatformManeuverActor extends AtomicModelBase<PlatformManeuverActor
             return;
         }
         if(this.phase.getName().equals(MOVE.getName())){
-            if(this.activePort == in_engage_result){
-                /**
-                 * 得到一個交戰結果，目的是停止机动：
-                 */
-                in_engage_result_value = ((Boolean) value);
-                this.phase = IDLE;
-                return;
-            }
+
             if(this.activePort == in_env_info){
                 return;
             }
