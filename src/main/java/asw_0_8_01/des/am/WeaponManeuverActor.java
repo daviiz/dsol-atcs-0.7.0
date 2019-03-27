@@ -211,8 +211,14 @@ public class WeaponManeuverActor extends AtomicModelBase<WeaponManeuverActorOm> 
                 String cmd = cmd_info[0];
                 double x = Double.valueOf(cmd_info[1]);
                 double y = Double.valueOf(cmd_info[2]);
-                viewData.destination = SimUtil.nextPoint(this.viewData.origin.x,this.viewData.origin.y,x,y,
-                        this.viewData.speed,(cmd.equals("APPROACH")));
+                if(this.modelName.equals("Torpedo")){
+                    viewData.destination = SimUtil.nextPoint(this.viewData.origin.x,this.viewData.origin.y,x,y,
+                            this.viewData.speed,true);
+                }else{
+                    viewData.destination = SimUtil.nextPoint(this.viewData.origin.x,this.viewData.origin.y,x,y,
+                            this.viewData.speed,false);
+                }
+
 
             }
             this.viewData.remainingTime -= this.phase.getLifeTime();
